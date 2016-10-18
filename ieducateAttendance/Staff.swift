@@ -17,10 +17,18 @@ class Staff {
     
     var onSite :Int
     
-    init(Name: String, ProfilePic: UIImage?) {
+    init(Name: String, ProfilePic: UIImage?, onSite: Int) {
         self.Name = Name
         self.profilePic = ProfilePic
+        
+        
+        //use the name to search through the server to get the latest onsite status of the staff
+        self.onSite = onSite
+        
+        
     }
+    
+    
     
 
 

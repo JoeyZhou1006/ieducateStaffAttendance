@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "87B1C226264B191C5E1A98759676CD09B3228411",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "87B1C226264B191C5E1A98759676CD09B3228411" : 9223372036854775807,
+    "45DFD1B0C238D6325F3D42A951D07F54AB5DE64E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "09612CB9-0F6C-4FAD-9482-39770E0F0D1C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "87B1C226264B191C5E1A98759676CD09B3228411" : "ieducateAttendance\/",
+    "45DFD1B0C238D6325F3D42A951D07F54AB5DE64E" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ieducateAttendance",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ieducateAttendance.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JoeyZhou1006\/ieducateStaffAttendance.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "45DFD1B0C238D6325F3D42A951D07F54AB5DE64E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JoeyZhou1006\/ieducateStaffAttendance.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "87B1C226264B191C5E1A98759676CD09B3228411"
+    }
+  ]
+}
