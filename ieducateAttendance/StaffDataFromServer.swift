@@ -183,7 +183,7 @@ class StaffDataFromServer {
            // downloadUserImageByUrl(url: staff[1])
             print("printing the staff's image url")
             print(staff[0])
-            print(staff[1])
+          //  print(staff[1])
             
             
             //this is an asyn function, !!!!!!!!!
@@ -191,16 +191,28 @@ class StaffDataFromServer {
             
             self.myGroup.enter()
             Alamofire.request(staff[1]).responseImage { response in
-               // debugPrint(response)
+               debugPrint(response)
                 
-               // print(response.request)
-                //print(response.response)
-                //debugPrint(response.result)
+               print(response.request)
+               print(response.response)
+               debugPrint(response.result)
                 
                 print("Finished request \(staff[0])")
+               // print("request url\(staff[1]) ")
                 self.groupOfAllImages.append(staff[1])
+                
+                if let image = response.result.value {
+                    print("image downloaded: \(image)")
+                }
+
+                
+                
                 self.myGroup.leave()
-            }
+                
+                //self.groupOfAllImages.append(UIImage(response.result.value))
+                
+                
+                           }
         }
         
         
@@ -210,6 +222,8 @@ class StaffDataFromServer {
         
         myGroup.notify(queue: DispatchQueue.main) {
             print("finished alll the requests , donneeeeeeeeeeeeeeeee")
+            
+            //print(self.groupOfAllImages)
         
         }
         
@@ -232,19 +246,19 @@ class StaffDataFromServer {
     }
     
     
-    func decodingBase64(strBase64: String) -> UIImage{
-        
-        
-        //now we get the decoded nsdata
-        let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
-        
-        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
-        print(decodedimage)
-       // yourImageView.image = decodedimage
-        return decodedimage
-    
-    }
-    
+//    func decodingBase64(strBase64: String) -> UIImage{
+//        
+//        
+//        //now we get the decoded nsdata
+//        let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
+//        
+//        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+//        print(decodedimage)
+//       // yourImageView.image = decodedimage
+//        return decodedimage
+//    
+//    }
+//    
     
     
     // self.getAllStaffNamesAndPic()
@@ -282,3 +296,4 @@ class StaffDataFromServer {
 
 
 }
+
