@@ -17,10 +17,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.Model.downloadUserImageByUrl(url: "_57d6504d62850ren.jpg")
-        self.Model.getAllStaffNames()
+        self.Model.getNamesAndPicUrls()
+       // self.Model.getListOfImageByArrayOfStaff(list: )
+        
+        
+        
+            
+        
+        }
         
     
         
 }
 
-}
+
+

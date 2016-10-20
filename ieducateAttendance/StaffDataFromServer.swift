@@ -27,57 +27,25 @@ class StaffDataFromServer {
     
     var groupOfAllImages:[String] = []
     
-    init() {
-        
-
-        
-        
-        
-        
-    }
     
+    //create an empty dictionary to store each staff with their informtion as a sub array of the name which is a key in the dictionary
     
+    var staffInfo:[String: [AnyObject]] = [:]
     
-   
-    
-    
-    
-    //receive a name string to search in server to get the picture and insert them into staff object
-    func getStaffDataFromServer(name: String){
-        
-        
-    }
-    
-    
-    
-    //download image of a specific staff by given name
-    func downloadImageByname(name: String){
-        
-        
-    
-    }
-
     
     //get the last onsite status of a specific staff by given name
     func getLatestOnsiteStatusOfStaffByName(name: String){
         
     }
     
-    
-    //this will talk to the server to get all the names from the mysql database
-    func retrieveAllStaffObject() -> Array<String> {
-    
-    
-    
-        return ["",""]
-    }
+
     
     
     //use alamofire to get all users from web server and put the names in an array
-    func getAllStaffNames(){
+    func getNamesAndPicUrls(){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://192.168.1.7/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+        Alamofire.request("http://10.10.10.72/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
             print(response.request)  // original URL request
             print(response.response) // URL response
             print(response.data)     // server data
@@ -103,14 +71,13 @@ class StaffDataFromServer {
                 let name = itemObject["Name"] as! String
                 let photo_64Encoded = itemObject["Photo_Url"] as! String
                 
-               // print("name is ",name,"photo that is encoded into base64",photo_64Encoded)
                 //store the staffs' names into the staff names arrary
                 //self.staffNames.append(name)
                 //insert method to deal with the downloaded image
                 //print(self.staffNames)
                 
                 //self.staffNameandPic[name]=photo_64Encoded
-               // self.staffNameandPic.
+                // self.staffNameandPic.
                 var tempArrary: [String] = []
                 tempArrary.append(name )
                 tempArrary.append(photo_64Encoded )
@@ -147,30 +114,29 @@ class StaffDataFromServer {
     
     
     
-    //get the image from server by given url string
-    func downloadUserImageByUrl(url: String){
-        
-        
-        //"192.168.1.7/Test/uploads/profile/"
-        //var BaseUrl = "http://192.168.1.7/Test/uploads/profile/"
-        
-       // BaseUrl.append(url)
-        Alamofire.request(url).responseImage { response in
-            debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-            
-            if let image = response.result.value {
-                print("image downloaded: \(image)")
-                //self.userImage.image = image
-            }
-            
-        }
-        
-        
-    }
+//    //get the image from server by given url string
+//    func downloadUserImageByUrl(url: String){
+//        
+//        
+//        //"192.168.1.7/Test/uploads/profile/"
+//        
+//       // BaseUrl.append(url)
+//        Alamofire.request(url).responseImage { response in
+//            debugPrint(response)
+//            
+//            print(response.request)
+//            print(response.response)
+//            debugPrint(response.result)
+//            
+//            if let image = response.result.value {
+//                print("image downloaded: \(image)")
+//                //self.userImage.image = image
+//            }
+//            
+//        }
+//        
+//        
+//    }
     
     
     
@@ -190,7 +156,7 @@ class StaffDataFromServer {
             //downloadUserImageByUrl(url: staff[1])
             
             self.myGroup.enter()
-            Alamofire.request(staff[1]).responseImage { response in
+            Alamofire.request(staff[1] ).responseImage { response in
                debugPrint(response)
                 
                print(response.request)
@@ -203,6 +169,9 @@ class StaffDataFromServer {
                 
                 if let image = response.result.value {
                     print("image downloaded: \(image)")
+                    
+                    self.staffInfo[staff[0]] = [staff[1] as AnyObject,image]
+                   
                 }
 
                 
@@ -216,84 +185,88 @@ class StaffDataFromServer {
         }
         
         
-//        DispatchGroup.notify(myGroup, DispatchQueue.main, {
-//            print("Finished all requests.")
-//        })
-        
         myGroup.notify(queue: DispatchQueue.main) {
             print("finished alll the requests , donneeeeeeeeeeeeeeeee")
             
-            //print(self.groupOfAllImages)
+            print(self.staffInfo.count)
+            print(self.staffInfo["Megan O'Neil"])
+            
+            
+            
+            self.storeFetchedImagesToCoreData()
+
         
         }
         
     
     }
 
-    
-    
-    
-    
-    //stored the fetched results to coredata
-    func storeFetchedDataToCoreDate(){
+
+    //stored the fetched images to local device directory
+    func storeFetchedImagesToCoreData(){
+        
+        
+        
+        for (name, infoArray) in self.staffInfo {
+            //convert uiimage to jpg format
+            if let data = UIImagePNGRepresentation(infoArray[1] as! UIImage) {
+            
+                
+                //get the url part of a staff from staff information array
+                let temp = infoArray[0] as! NSString
+                
+                //get the last part of the url which is the name and store it into staff
+                //information array as the local url directory
+               //let filename = fileInDocumentsDirectory(filename: temp.lastPathComponent)
+                
+                //make the filename of the image, and append it to the local direcotry
+                let filename = getDocumentsURL().appendingPathComponent(temp.lastPathComponent)
+                
+                //try to store the images into phone's directory
+                try? data.write(to: filename!)
+                print("file path is    ",getDocumentsURL())
+                print("file name is    ", filename)
+            }
+        }
+        
+      
+        
     
     
     }
     
     
-    func updataCoreDataByFetchedData(){
+    //get the documents directory of the device to be used for storing images
+    func getDocumentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory = paths[0]
+        return documentDirectory
     
     }
     
     
-//    func decodingBase64(strBase64: String) -> UIImage{
-//        
-//        
-//        //now we get the decoded nsdata
-//        let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
-//        
-//        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
-//        print(decodedimage)
-//       // yourImageView.image = decodedimage
-//        return decodedimage
-//    
-//    }
-//    
     
+    func updateCoreDataByFetchedData(){
     
-    // self.getAllStaffNamesAndPic()
-    
-    //let parameter: Parameters = ["foo":"bar"]
-    
-    //        for i in 0 ..< 5 {
-    //            myGroup.enter()
-    //
-    //            Alamofire.request("http://httpbin.org/get").responseJSON{ response in
-    //                //print("Finished request \(i)")
-    //                // dispatch_group_leave(self.myGroup)
-    //                print(response.result)
-    //            }
-    //        }
-    //
-    //        
+    }
     
     
     
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        return documentsURL as NSURL
+    }
+    
+    func fileInDocumentsDirectory(filename: String) -> String {
+        
+        let fileURL = getDocumentsURL().appendingPathComponent(filename)
+        return fileURL!.path
+        
+    }
     
     
-
+    // Define the specific path, image name
+    //let imagePath = fileInDocumentsDirectory(myImageName)
     
-    
-    //try to get the image name
-    //        var name = "uploads/profile/_57d642356baf1daniel.jpg"
-    //
-    //        let index = name.index(name.startIndex, offsetBy: 16)
-    //        print(name.substring(from: index)) // playground
-    
-    
-    
-    
-
-
 }
 
