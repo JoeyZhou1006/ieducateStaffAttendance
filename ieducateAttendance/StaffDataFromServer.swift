@@ -51,7 +51,7 @@ class StaffDataFromServer {
     
     
     //use alamofire to get all users from web server and put the names in an array
-    func getNamesAndPicUrls(completionHandler: (Array<Staff>) -> ()) -> (){
+    func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
         Alamofire.request("http://10.10.10.72/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
@@ -94,27 +94,6 @@ class StaffDataFromServer {
                 
                 
                 
-                //print(self.staffInfoSet)
-                
-                
-                //test whether name and image url inserted properly
-//                for staff in self.staffInfoSet {
-//                    print(staff.Image_Url,staff.Name,staff.onSite,staff.profilePic)
-//                
-//                }
-                
-                //self.staffNameandPic[name]=photo_64Encoded
-                // self.staffNameandPic.
-                
-//                var tempArrary: [String] = []
-//                tempArrary.append(name )
-//                tempArrary.append(photo_url )
-                
-               // print("++++++++++++++++++++",photo_url)
-              //  self.staffNameandPic.insert(tempArrary, at: num)
-                //print(self.staffNameandPic)
-                
-                
             }
                 //if failed, print the error response
             case .failure(let error):
@@ -124,12 +103,12 @@ class StaffDataFromServer {
             
               print("should be 11 ")
               print(self.staffInfoSet.count)
-           
+           completionHandler(self.staffInfoSet)
             
             
             
         print("2nd row, it should be 11 as well")
-        self.getListOfImageByArrayOfStaff(list: self.staffInfoSet)
+        //self.getListOfImageByArrayOfStaff(list: self.staffInfoSet)
             
             
         
@@ -146,7 +125,7 @@ class StaffDataFromServer {
     
     
     //go through staff array to get a list of photo url of each staff
-    func getListOfImageByArrayOfStaff(list: [Staff]){
+    func getListOfImageByArrayOfStaff(list: [Staff],completionHandler: @escaping (Array<Staff>) -> ()){
         
         
         for staff in list {
@@ -198,14 +177,15 @@ class StaffDataFromServer {
 //            print(self.staffInfo.count)
 //            print(self.staffInfo["Megan O'Neil"])
             
-            for staff in self.staffInfoSet {
-            print(staff.Name, staff.Image_Url, staff.onSite, staff.profilePic)
+//            for staff in self.staffInfoSet {
+//            print(staff.Name, staff.Image_Url, staff.onSite, staff.profilePic)
+//            
+//            }
             
-            }
             
-            
-            
+           
             self.storeFetchedImagesToCoreData()
+             completionHandler(self.staffInfoSet)
 
         
         }
@@ -239,17 +219,17 @@ class StaffDataFromServer {
                 
                 //try to store the images into phone's directory
                 try? data.write(to: imageLocalUrl!)
-                print("file path is    ",getDocumentsURL())
-                print("file name is    ", imageLocalUrl)
+              //  print("file path is    ",getDocumentsURL())
+                //print("file name is    ", imageLocalUrl)
                 staff.ImageLocalUrl = imageLocalUrl?.absoluteString
             }
         }
         
-        for staff in self.staffInfoSet {
-            print("hahahahahahahah")
-        print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
-        
-        }
+//        for staff in self.staffInfoSet {
+//            print("hahahahahahahah")
+//        print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
+//        
+//        }
         
         
         
