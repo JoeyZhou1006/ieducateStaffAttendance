@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.Model.downloadUserImageByUrl(url: "_57d6504d62850ren.jpg")
-        self.Model.getNamesAndPicUrls()
+        self.Model.getNamesAndPicUrls(){(response) in
+            
+        }
        // self.Model.getListOfImageByArrayOfStaff(list: )
         
         

@@ -16,6 +16,8 @@ import AlamofireImage
 //network controller
 class StaffDataFromServer {
     
+    static let sharedModel = StaffDataFromServer()
+    
     
     var staffNameandPic: [Array<String>] = []
     
@@ -26,6 +28,13 @@ class StaffDataFromServer {
     
     
     var groupOfAllImages:[String] = []
+    
+    
+    
+    
+    
+    //an array holds the data of every employee
+    var staffInfoSet:[Staff] = []
     
     
     //create an empty dictionary to store each staff with their informtion as a sub array of the name which is a key in the dictionary
@@ -42,7 +51,7 @@ class StaffDataFromServer {
     
     
     //use alamofire to get all users from web server and put the names in an array
-    func getNamesAndPicUrls(){
+    func getNamesAndPicUrls(completionHandler: (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
         Alamofire.request("http://10.10.10.72/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
@@ -69,20 +78,40 @@ class StaffDataFromServer {
                 
                 let itemObject = arrayValueOfPerson[num] as! NSDictionary
                 let name = itemObject["Name"] as! String
-                let photo_64Encoded = itemObject["Photo_Url"] as! String
+                let photo_url = itemObject["Photo_Url"] as! String
                 
                 //store the staffs' names into the staff names arrary
                 //self.staffNames.append(name)
                 //insert method to deal with the downloaded image
                 //print(self.staffNames)
                 
+                
+                var staff = Staff(Name: name, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
+                
+                self.staffInfoSet.append(staff)
+                
+                
+                
+                
+                
+                //print(self.staffInfoSet)
+                
+                
+                //test whether name and image url inserted properly
+//                for staff in self.staffInfoSet {
+//                    print(staff.Image_Url,staff.Name,staff.onSite,staff.profilePic)
+//                
+//                }
+                
                 //self.staffNameandPic[name]=photo_64Encoded
                 // self.staffNameandPic.
-                var tempArrary: [String] = []
-                tempArrary.append(name )
-                tempArrary.append(photo_64Encoded )
                 
-                self.staffNameandPic.insert(tempArrary, at: num)
+//                var tempArrary: [String] = []
+//                tempArrary.append(name )
+//                tempArrary.append(photo_url )
+                
+               // print("++++++++++++++++++++",photo_url)
+              //  self.staffNameandPic.insert(tempArrary, at: num)
                 //print(self.staffNameandPic)
                 
                 
@@ -94,13 +123,13 @@ class StaffDataFromServer {
         }
             
               print("should be 11 ")
-              print(self.staffNameandPic.count)
+              print(self.staffInfoSet.count)
            
             
             
             
         print("2nd row, it should be 11 as well")
-        self.getListOfImageByArrayOfStaff(list: self.staffNameandPic)
+        self.getListOfImageByArrayOfStaff(list: self.staffInfoSet)
             
             
         
@@ -113,42 +142,18 @@ class StaffDataFromServer {
     }
     
     
-    
-//    //get the image from server by given url string
-//    func downloadUserImageByUrl(url: String){
-//        
-//        
-//        //"192.168.1.7/Test/uploads/profile/"
-//        
-//       // BaseUrl.append(url)
-//        Alamofire.request(url).responseImage { response in
-//            debugPrint(response)
-//            
-//            print(response.request)
-//            print(response.response)
-//            debugPrint(response.result)
-//            
-//            if let image = response.result.value {
-//                print("image downloaded: \(image)")
-//                //self.userImage.image = image
-//            }
-//            
-//        }
-//        
-//        
-//    }
-    
+
     
     
     //go through staff array to get a list of photo url of each staff
-    func getListOfImageByArrayOfStaff(list: [Array<String>]){
+    func getListOfImageByArrayOfStaff(list: [Staff]){
         
         
         for staff in list {
             
            // downloadUserImageByUrl(url: staff[1])
             print("printing the staff's image url")
-            print(staff[0])
+            print(staff.Image_Url)
           //  print(staff[1])
             
             
@@ -156,21 +161,23 @@ class StaffDataFromServer {
             //downloadUserImageByUrl(url: staff[1])
             
             self.myGroup.enter()
-            Alamofire.request(staff[1] ).responseImage { response in
+            Alamofire.request(staff.Image_Url ).responseImage { response in
                debugPrint(response)
                 
                print(response.request)
                print(response.response)
                debugPrint(response.result)
                 
-                print("Finished request \(staff[0])")
+                print("Finished request \(staff.Name)")
                // print("request url\(staff[1]) ")
-                self.groupOfAllImages.append(staff[1])
+               // self.groupOfAllImages.append(staff[1])
                 
                 if let image = response.result.value {
                     print("image downloaded: \(image)")
                     
-                    self.staffInfo[staff[0]] = [staff[1] as AnyObject,image]
+                   // self.staffInfo[staff[0]] = [staff[1] as AnyObject,image]
+                    //append the image to the profile pic of the staff in staffinfoset
+                    staff.profilePic = image
                    
                 }
 
@@ -181,15 +188,20 @@ class StaffDataFromServer {
                 //self.groupOfAllImages.append(UIImage(response.result.value))
                 
                 
-                           }
+        }
         }
         
         
         myGroup.notify(queue: DispatchQueue.main) {
             print("finished alll the requests , donneeeeeeeeeeeeeeeee")
             
-            print(self.staffInfo.count)
-            print(self.staffInfo["Megan O'Neil"])
+//            print(self.staffInfo.count)
+//            print(self.staffInfo["Megan O'Neil"])
+            
+            for staff in self.staffInfoSet {
+            print(staff.Name, staff.Image_Url, staff.onSite, staff.profilePic)
+            
+            }
             
             
             
@@ -202,32 +214,44 @@ class StaffDataFromServer {
     }
 
 
+    
+    
+    
     //stored the fetched images to local device directory
     func storeFetchedImagesToCoreData(){
         
         
         
-        for (name, infoArray) in self.staffInfo {
+        for staff in self.staffInfoSet {
             //convert uiimage to jpg format
-            if let data = UIImagePNGRepresentation(infoArray[1] as! UIImage) {
+            if let data = UIImagePNGRepresentation(staff.profilePic!) {
             
                 
                 //get the url part of a staff from staff information array
-                let temp = infoArray[0] as! NSString
+                let temp = staff.Image_Url as NSString
                 
                 //get the last part of the url which is the name and store it into staff
                 //information array as the local url directory
                //let filename = fileInDocumentsDirectory(filename: temp.lastPathComponent)
                 
                 //make the filename of the image, and append it to the local direcotry
-                let filename = getDocumentsURL().appendingPathComponent(temp.lastPathComponent)
+                let imageLocalUrl = getDocumentsURL().appendingPathComponent(temp.lastPathComponent)
                 
                 //try to store the images into phone's directory
-                try? data.write(to: filename!)
+                try? data.write(to: imageLocalUrl!)
                 print("file path is    ",getDocumentsURL())
-                print("file name is    ", filename)
+                print("file name is    ", imageLocalUrl)
+                staff.ImageLocalUrl = imageLocalUrl?.absoluteString
             }
         }
+        
+        for staff in self.staffInfoSet {
+            print("hahahahahahahah")
+        print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
+        
+        }
+        
+        
         
       
         
@@ -243,6 +267,11 @@ class StaffDataFromServer {
         return documentDirectory
     
     }
+    
+    
+    
+    
+    
     
     
     

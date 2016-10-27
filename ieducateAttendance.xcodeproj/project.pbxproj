@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		216D371CEECFD1A4B0E71942 /* Pods_ieducateAttendance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDCFF1CA071A4903712A2C /* Pods_ieducateAttendance.framework */; };
+		684F71B61DB87FBD00AF6C7C /* LocalDataFromCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */; };
 		685916E11DAEFCD300BF3BBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916E01DAEFCD300BF3BBC /* AppDelegate.swift */; };
 		685916E31DAEFCD300BF3BBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916E21DAEFCD300BF3BBC /* ViewController.swift */; };
 		685916E61DAEFCD300BF3BBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 685916E41DAEFCD300BF3BBC /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		64EDCFF1CA071A4903712A2C /* Pods_ieducateAttendance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ieducateAttendance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataFromCoreData.swift; sourceTree = "<group>"; };
 		685916DD1DAEFCD300BF3BBC /* ieducateAttendance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ieducateAttendance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685916E01DAEFCD300BF3BBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		685916E21DAEFCD300BF3BBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		681536E01DC172B700F9243D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				685916F81DAF0D8100BF3BBC /* StaffDataFromServer.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		681536E11DC1731A00F9243D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				685916E41DAEFCD300BF3BBC /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		681536E21DC1732400F9243D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				685916E21DAEFCD300BF3BBC /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		685916D41DAEFCD300BF3BBC = {
 			isa = PBXGroup;
 			children = (
@@ -84,10 +110,11 @@
 		685916DF1DAEFCD300BF3BBC /* ieducateAttendance */ = {
 			isa = PBXGroup;
 			children = (
+				681536E21DC1732400F9243D /* Controller */,
+				681536E11DC1731A00F9243D /* View */,
+				681536E01DC172B700F9243D /* Network */,
 				685916F71DAF056C00BF3BBC /* Model */,
 				685916E01DAEFCD300BF3BBC /* AppDelegate.swift */,
-				685916E21DAEFCD300BF3BBC /* ViewController.swift */,
-				685916E41DAEFCD300BF3BBC /* Main.storyboard */,
 				685916EA1DAEFCD300BF3BBC /* Assets.xcassets */,
 				685916EC1DAEFCD400BF3BBC /* LaunchScreen.storyboard */,
 				685916EF1DAEFCD400BF3BBC /* Info.plist */,
@@ -100,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				685916F51DAF053800BF3BBC /* Staff.swift */,
-				685916F81DAF0D8100BF3BBC /* StaffDataFromServer.swift */,
+				684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,6 +260,7 @@
 				685916F91DAF0D8100BF3BBC /* StaffDataFromServer.swift in Sources */,
 				685916E91DAEFCD300BF3BBC /* ieducateAttendance.xcdatamodeld in Sources */,
 				685916F61DAF053800BF3BBC /* Staff.swift in Sources */,
+				684F71B61DB87FBD00AF6C7C /* LocalDataFromCoreData.swift in Sources */,
 				685916E11DAEFCD300BF3BBC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
