@@ -21,23 +21,21 @@ class ViewController: UIViewController {
         self.Model.getNamesAndPicUrls(){(response) in
             
             print("inside the view controllerlelellelelelelelele")
-            
-           
             for staff in  response{
                 print("hahahahahahahah")
                 print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
-                
             }
             
-            //secondly, after getting the result of the name and pictures url, start the 2nd asyn calls to download the data, and update the staff array
-            self.Model.getListOfImageByArrayOfStaff(list: response){(response2)-> Void in
+            //secondly, after getting the result of the name and pictures url, start the 2nd asyn calls to download the images, and update the staff array
+        self.Model.getListOfImageByArrayOfStaff(list: response){(response2)-> Void in
                 
                 
-                for staff in  self.Model.staffInfoSet{
-                    print("blablabalbalbalbalablablabalbalbalblablabla")
-                    print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
+            for staff in  self.Model.staffInfoSet{
+                print("blablabalbalbalbalablablabalbalbalblablabla")
+                print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
                     
-                }
+            }
+            
             
             }
         }

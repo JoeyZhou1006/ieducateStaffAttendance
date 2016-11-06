@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 
 class Staff {
-    //properties of staff that store names and images of
+    //properties of staff that store names and images
     var Name: String
     
     
     var Image_Url: String
+    
+    
+    
     //the image can be nil
     var profilePic: UIImage?
     

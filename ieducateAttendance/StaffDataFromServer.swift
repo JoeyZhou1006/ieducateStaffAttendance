@@ -54,7 +54,7 @@ class StaffDataFromServer {
     func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://10.10.10.72/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+        Alamofire.request("http://localhost/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
             print(response.request)  // original URL request
             print(response.response) // URL response
             print(response.data)     // server data
@@ -90,34 +90,25 @@ class StaffDataFromServer {
                 
                 self.staffInfoSet.append(staff)
                 
-                
+                print(staff.Name, staff.Image_Url)
                 
                 
                 
             }
                 //if failed, print the error response
             case .failure(let error):
-                print(error)
                 print("cannot connect to the server")
+                print("inside the method that is trying to get image")
+                print(error)
+               
         }
             
-              print("should be 11 ")
+              print("should be 21 ")
               print(self.staffInfoSet.count)
+            //give the updated staff infoset to be hanlder later on in viewcontroller
            completionHandler(self.staffInfoSet)
-            
-            
-            
-        print("2nd row, it should be 11 as well")
-        //self.getListOfImageByArrayOfStaff(list: self.staffInfoSet)
-            
-            
-        
+        print("2nd row, it should be 21 as well")
         }
-      
-        
-        //deal with name and pic
-   
-    
     }
     
     
@@ -126,16 +117,10 @@ class StaffDataFromServer {
     
     //go through staff array to get a list of photo url of each staff
     func getListOfImageByArrayOfStaff(list: [Staff],completionHandler: @escaping (Array<Staff>) -> ()){
-        
-        
         for staff in list {
-            
-           // downloadUserImageByUrl(url: staff[1])
+            // downloadUserImageByUrl(url: staff[1])
             print("printing the staff's image url")
             print(staff.Image_Url)
-          //  print(staff[1])
-            
-            
             //this is an asyn function, !!!!!!!!!
             //downloadUserImageByUrl(url: staff[1])
             
@@ -157,46 +142,60 @@ class StaffDataFromServer {
                    // self.staffInfo[staff[0]] = [staff[1] as AnyObject,image]
                     //append the image to the profile pic of the staff in staffinfoset
                     staff.profilePic = image
-                   
                 }
-
-                
-                
-                self.myGroup.leave()
-                
-                //self.groupOfAllImages.append(UIImage(response.result.value))
-                
-                
+            self.myGroup.leave()
         }
         }
-        
-        
         myGroup.notify(queue: DispatchQueue.main) {
             print("finished alll the requests , donneeeeeeeeeeeeeeeee")
-            
-//            print(self.staffInfo.count)
-//            print(self.staffInfo["Megan O'Neil"])
-            
-//            for staff in self.staffInfoSet {
-//            print(staff.Name, staff.Image_Url, staff.onSite, staff.profilePic)
-//            
-//            }
-            
-            
            
-            self.storeFetchedImagesToCoreData()
+           // self.storeFetchedImagesToCoreData()
              completionHandler(self.staffInfoSet)
-
-        
         }
-        
-    
     }
+    
+    
+    
+    
+    func getLastOnsiteInfoByArrayOfStuff(list: [Staff], completionHandler: @escaping (Array<Staff>) ->()){
+        
+        for staff in list {
+           // var userName = staff.
+            Alamofire.request("http://localhost/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                
+                switch response.result {
+                // in regards of the reponse from server, if success, do the following
+                case .success:
+                    let retrievedValue = response.result.value as! NSDictionary
+                    //print(retrievedValue.description)
+                    
+                    //print all the users in this object
+                    let arrayValueOfPerson = retrievedValue["users"] as! NSArray
+                    //let JsonDataset = JSON(retrievedValue)
+                    //  print("JSON: \(self.JSON)")
+                    
+                    
+                //if failed, print the error response
+                case .failure(let error):
+                    print("cannot connect to the server")
+                    print(error)
+                    
+                }
+                
+            }
+      
+        }
+    }
+    
+    
+    
 
-
-    
-    
-    
+  
     //stored the fetched images to local device directory
     func storeFetchedImagesToCoreData(){
         
