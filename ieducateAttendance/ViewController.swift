@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             print("inside the view controllerlelellelelelelelele")
             for staff in  response{
                 print("hahahahahahahah")
-                print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
+                print(staff.Image_Url, staff.tableName,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
             }
             
             //secondly, after getting the result of the name and pictures url, start the 2nd asyn calls to download the images, and update the staff array

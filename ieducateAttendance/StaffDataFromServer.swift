@@ -78,6 +78,7 @@ class StaffDataFromServer {
                 
                 let itemObject = arrayValueOfPerson[num] as! NSDictionary
                 let name = itemObject["Name"] as! String
+                let tableName = itemObject["TableName"] as! String
                 let photo_url = itemObject["Photo_Url"] as! String
                 
                 //store the staffs' names into the staff names arrary
@@ -86,7 +87,7 @@ class StaffDataFromServer {
                 //print(self.staffNames)
                 
                 
-                var staff = Staff(Name: name, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
+                var staff = Staff(Name: name,TableName: tableName, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
                 
                 self.staffInfoSet.append(staff)
                 

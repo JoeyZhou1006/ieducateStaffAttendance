@@ -14,9 +14,11 @@ class Staff {
     var Name: String
     
     
+    var tableName: String
+    
     var Image_Url: String
     
-    
+   
     
     //the image can be nil
     var profilePic: UIImage?
@@ -27,8 +29,9 @@ class Staff {
     //the onsite can be nil
     var onSite :Int?
     
-    init(Name: String, Image_Url: String, ProfilePic: UIImage?, ImageLocalUrl: String?, onSite: Int?) {
+    init(Name: String, TableName: String, Image_Url: String, ProfilePic: UIImage?, ImageLocalUrl: String?, onSite: Int?) {
         self.Name = Name
+        self.tableName = TableName
         self.Image_Url = Image_Url
         self.profilePic = ProfilePic
         self.ImageLocalUrl = ImageLocalUrl
