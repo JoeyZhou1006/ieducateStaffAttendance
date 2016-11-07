@@ -161,35 +161,38 @@ class StaffDataFromServer {
     func getLastOnsiteInfoByArrayOfStuff(list: [Staff], completionHandler: @escaping (Array<Staff>) ->()){
         
         for staff in list {
-           // var userName = staff.
-            Alamofire.request("http://localhost/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
+            let userName = staff.tableName
+            
+            //concatenate base url with the user table that we want to query
+            let onsiteUrl = "http://localhost/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
+            print(onsiteUrl)
+            self.myGroup.enter()
+            Alamofire.request(onsiteUrl) .responseString { response in // 1
                 
                 switch response.result {
-                // in regards of the reponse from server, if success, do the following
+                    
                 case .success:
-                    let retrievedValue = response.result.value as! NSDictionary
-                    //print(retrievedValue.description)
                     
-                    //print all the users in this object
-                    let arrayValueOfPerson = retrievedValue["users"] as! NSArray
-                    //let JsonDataset = JSON(retrievedValue)
-                    //  print("JSON: \(self.JSON)")
+                    let var1 = response.result.value as! String!
+                    print(var1)
+                    staff.onSite = var1
                     
                     
-                //if failed, print the error response
                 case .failure(let error):
+                    
                     print("cannot connect to the server")
                     print(error)
-                    
                 }
                 
+                self.myGroup.leave()
             }
-      
+        }
+        
+        myGroup.notify(queue: DispatchQueue.main) {
+            print("finished alll last onsite information of staff , donneeeeeeeeeeeeeeeee")
+            
+            // self.storeFetchedImagesToCoreData()
+            completionHandler(self.staffInfoSet)
         }
     }
     

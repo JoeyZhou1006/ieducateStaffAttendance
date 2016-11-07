@@ -27,9 +27,9 @@ class Staff {
     var ImageLocalUrl: String?
     
     //the onsite can be nil
-    var onSite :Int?
+    var onSite :String?
     
-    init(Name: String, TableName: String, Image_Url: String, ProfilePic: UIImage?, ImageLocalUrl: String?, onSite: Int?) {
+    init(Name: String, TableName: String, Image_Url: String, ProfilePic: UIImage?, ImageLocalUrl: String?, onSite: String?) {
         self.Name = Name
         self.tableName = TableName
         self.Image_Url = Image_Url

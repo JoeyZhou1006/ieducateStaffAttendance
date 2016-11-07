@@ -21,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		64EDCFF1CA071A4903712A2C /* Pods_ieducateAttendance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ieducateAttendance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6827CB071DCFF71F001F2C71 /* Test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Test.playground; sourceTree = "<group>"; };
 		684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataFromCoreData.swift; sourceTree = "<group>"; };
 		685916DD1DAEFCD300BF3BBC /* ieducateAttendance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ieducateAttendance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685916E01DAEFCD300BF3BBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 				685916EC1DAEFCD400BF3BBC /* LaunchScreen.storyboard */,
 				685916EF1DAEFCD400BF3BBC /* Info.plist */,
 				685916E71DAEFCD300BF3BBC /* ieducateAttendance.xcdatamodeld */,
+				6827CB071DCFF71F001F2C71 /* Test.playground */,
 			);
 			path = ieducateAttendance;
 			sourceTree = "<group>";
