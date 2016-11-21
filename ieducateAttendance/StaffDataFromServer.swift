@@ -14,7 +14,7 @@ import AlamofireImage
 
 
 //network controller
-class StaffDataFromServer {
+public class StaffDataFromServer {
     
     static let sharedModel = StaffDataFromServer()
     
@@ -25,13 +25,7 @@ class StaffDataFromServer {
 
     var myGroup = DispatchGroup()
     
-    
-    
     var groupOfAllImages:[String] = []
-    
-    
-    
-    
     
     //an array holds the data of every employee
     var staffInfoSet:[Staff] = []
@@ -228,11 +222,7 @@ class StaffDataFromServer {
             }
         }
         
-//        for staff in self.staffInfoSet {
-//            print("hahahahahahahah")
-//        print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic)
-//        
-//        }
+
         
         
         

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		216D371CEECFD1A4B0E71942 /* Pods_ieducateAttendance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDCFF1CA071A4903712A2C /* Pods_ieducateAttendance.framework */; };
+		682753A71DE28CFD00BEFE15 /* staffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682753A61DE28CFD00BEFE15 /* staffTableViewCell.swift */; };
+		682753A91DE2A23200BEFE15 /* tempDatasets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682753A81DE2A23200BEFE15 /* tempDatasets.swift */; };
 		684F71B61DB87FBD00AF6C7C /* LocalDataFromCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */; };
 		685916E11DAEFCD300BF3BBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916E01DAEFCD300BF3BBC /* AppDelegate.swift */; };
 		685916E31DAEFCD300BF3BBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916E21DAEFCD300BF3BBC /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		64EDCFF1CA071A4903712A2C /* Pods_ieducateAttendance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ieducateAttendance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		682753A61DE28CFD00BEFE15 /* staffTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = staffTableViewCell.swift; sourceTree = "<group>"; };
+		682753A81DE2A23200BEFE15 /* tempDatasets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tempDatasets.swift; sourceTree = "<group>"; };
 		6827CB071DCFF71F001F2C71 /* Test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Test.playground; sourceTree = "<group>"; };
 		684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataFromCoreData.swift; sourceTree = "<group>"; };
 		685916DD1DAEFCD300BF3BBC /* ieducateAttendance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ieducateAttendance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +134,8 @@
 			children = (
 				685916F51DAF053800BF3BBC /* Staff.swift */,
 				684F71B51DB87FBD00AF6C7C /* LocalDataFromCoreData.swift */,
+				682753A61DE28CFD00BEFE15 /* staffTableViewCell.swift */,
+				682753A81DE2A23200BEFE15 /* tempDatasets.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -258,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				682753A71DE28CFD00BEFE15 /* staffTableViewCell.swift in Sources */,
 				685916E31DAEFCD300BF3BBC /* ViewController.swift in Sources */,
 				685916F91DAF0D8100BF3BBC /* StaffDataFromServer.swift in Sources */,
 				685916E91DAEFCD300BF3BBC /* ieducateAttendance.xcdatamodeld in Sources */,
+				682753A91DE2A23200BEFE15 /* tempDatasets.swift in Sources */,
 				685916F61DAF053800BF3BBC /* Staff.swift in Sources */,
 				684F71B61DB87FBD00AF6C7C /* LocalDataFromCoreData.swift in Sources */,
 				685916E11DAEFCD300BF3BBC /* AppDelegate.swift in Sources */,
