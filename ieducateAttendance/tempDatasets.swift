@@ -18,7 +18,7 @@ let Model = StaffDataFromServer()
     }
     
     
-    func retrieveDataFromServer() {
+    func retrieveDataFromServer(completionHandler: @escaping (Dictionary<String, Staff>,Dictionary<String, Staff>) -> ())-> (){
     
     self.Model.getNamesAndPicUrls(){(response) in
     
@@ -42,14 +42,17 @@ let Model = StaffDataFromServer()
     
     
     
-    for staff in  self.Model.staffInfoSet{
+    for staff in self.Model.staffInfoSet{
     print("blablabalbalbalbalablablabalbalbalblablabla++++++++++++++++++++++++++++")
     print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic, staff.onSite as! String!)
     
     }
     //now the staff's data is ready to be used, as all the needed information of staff at this stagee is retrieve
         
+        //tell the completion hanlder that both array sets are ready to be used and deliver it to be used in other places
         self.onlineAndOfflineSeparationToLists()
+        completionHandler(self.onlineStaff,self.offlineStaff)
+        
         
     }
     

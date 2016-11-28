@@ -10,10 +10,11 @@ import UIKit
 
 class staffTableViewCell: UITableViewCell {
     
-    var staffName: String?
-    var staffImage: UIImage?
     
+       
+    @IBOutlet weak var staffName: UILabel!
     
+    @IBOutlet weak var staffImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
