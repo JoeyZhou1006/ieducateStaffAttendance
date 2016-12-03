@@ -21,6 +21,7 @@ class StaffTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.staffTableView.rowHeight = 44.0
         //access method in model to get online and offline staff dictionaries ready, so we can use it for the table view
         self.tempdata.retrieveDataFromServer(){(response) in
         
@@ -50,6 +51,16 @@ class StaffTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+//    func imageWithImage(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
+//        
+//        UIGraphicsBeginImageContext( newSize )
+//        image.draw(in: CGRect(x: 0,y: 0,width: newSize.width,height: newSize.height))
+//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return newImage!.withRenderingMode(.alwaysTemplate)
+//    }
 
     // MARK: - Table view data source
 
@@ -85,15 +96,17 @@ class StaffTableViewController: UITableViewController {
         if(indexPath.section == 0){
             let key = onlinestaffkeys[indexPath.row]
             
-            cell.staffImage.image = onlineStaff[key]?.profilePic
-            
+           
+            cell.staffImage.image = onlineStaff[key]!.profilePic!           // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
             print(onlineStaff[key]?.profilePic)
             cell.staffName.text = onlineStaff[key]?.Name
             print(onlineStaff[key]?.Name)
             
         }else{
             let index = offlinestaffkeys[indexPath.row]
-            cell.staffImage.image = offlineStaff[index]!.profilePic
+            
+            cell.staffImage.image = offlineStaff[index]!.profilePic!
+            // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
             cell.staffName.text = offlineStaff[index]!.Name
         }
 
@@ -120,6 +133,10 @@ class StaffTableViewController: UITableViewController {
         }
     }
 
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 61
+    }
     
 
     /*

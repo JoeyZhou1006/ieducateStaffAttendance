@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,33 +11,36 @@
         <scene sceneID="lGd-ir-n5u">
             <objects>
                 <tableViewController id="YfM-BZ-1nw" customClass="StaffTableViewController" customModule="ieducateAttendance" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="NPs-cr-7Bv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" id="NPs-cr-7Bv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="60" id="hiy-WC-WXm" customClass="staffTableViewCell" customModule="ieducateAttendance" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="83" id="hiy-WC-WXm" customClass="staffTableViewCell" customModule="ieducateAttendance" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hiy-WC-WXm" id="0bK-gY-W8h">
-                                    <frame key="frameInset" width="375" height="59"/>
+                                    <frame key="frameInset" width="375" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f8z-VU-kxI"/>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjL-hR-mUA">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f8z-VU-kxI">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="0NY-Xc-drb"/>
+                                                <constraint firstAttribute="height" constant="50" id="ov2-3g-Re7"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="f8z-VU-kxI" firstAttribute="top" secondItem="0bK-gY-W8h" secondAttribute="topMargin" constant="-8" id="Kfm-09-2uR"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="OjL-hR-mUA" secondAttribute="bottom" constant="4" id="Mhz-yK-b8u"/>
-                                        <constraint firstAttribute="topMargin" secondItem="OjL-hR-mUA" secondAttribute="top" id="RM2-5p-zVq"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="f8z-VU-kxI" secondAttribute="bottom" constant="-8" id="cbe-Kc-mMC"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="OjL-hR-mUA" secondAttribute="trailing" constant="10" id="dKV-FS-tko"/>
-                                        <constraint firstItem="f8z-VU-kxI" firstAttribute="width" secondItem="0bK-gY-W8h" secondAttribute="height" multiplier="239:43" id="iNd-gm-7QT"/>
-                                        <constraint firstItem="f8z-VU-kxI" firstAttribute="leading" secondItem="0bK-gY-W8h" secondAttribute="leadingMargin" id="oDR-oh-4PV"/>
+                                        <constraint firstItem="OjL-hR-mUA" firstAttribute="leading" secondItem="f8z-VU-kxI" secondAttribute="trailing" constant="52" id="9Oh-Te-6LT"/>
+                                        <constraint firstItem="OjL-hR-mUA" firstAttribute="top" secondItem="0bK-gY-W8h" secondAttribute="topMargin" constant="15" id="CgI-mg-5sd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="f8z-VU-kxI" secondAttribute="bottom" constant="16" id="RuN-cK-3hc"/>
+                                        <constraint firstAttribute="topMargin" secondItem="f8z-VU-kxI" secondAttribute="top" id="W3X-Ka-qBt"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="f8z-VU-kxI" secondAttribute="leading" id="i2N-8B-RsJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
