@@ -100,6 +100,9 @@ class StaffTableViewController: UITableViewController {
             cell.staffImage.image = onlineStaff[key]!.profilePic!           // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
             print(onlineStaff[key]?.profilePic)
             cell.staffName.text = onlineStaff[key]?.Name
+            cell.uid = onlineStaff[key]?.tableName
+            print("here is the table name which should be uique")
+            print(cell.uid)
             print(onlineStaff[key]?.Name)
             
         }else{
@@ -136,6 +139,16 @@ class StaffTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 61
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "staffSignIn" {
+            
+        
+        
+        
+        }
     }
     
 

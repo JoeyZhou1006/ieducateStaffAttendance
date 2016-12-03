@@ -15,6 +15,8 @@ class staffTableViewCell: UITableViewCell {
     @IBOutlet weak var staffName: UILabel!
     
     @IBOutlet weak var staffImage: UIImageView!
+    var uid: String!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
