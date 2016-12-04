@@ -144,12 +144,43 @@ class StaffTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "staffSignIn" {
-            
+           let destination = segue.destination as! StaffSignInViewController
+//            
+//        
+        let indexpath = self.tableView.indexPathForSelectedRow!
+        let currentcell = tableView.cellForRow(at: indexpath) as! staffTableViewCell
+//        
+//        
+//            print("preparing for segue")
+//        print(currentcell.staffName)
+//        print(currentcell.staffName.text)
+//            
+        var staffname = currentcell.staffName.text!
+        print(staffname)
+    
+        destination.staffName = staffname
         
+       //if segue.identifier == "staffSignIn" {
+//            let destinationNavigationController = segue.destination. as! UINavigationController
+//            
+//            let destinationController = destinationNavigationController.topViewController as! StaffSignInViewController
+//            
+//            destinationController.staffName?.text = currentcell.staffName.text!
         
+ 
         
-        }
+      }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        var destination: StaffSignInViewController = storyboard?.instantiateViewController(withIdentifier: "staffSignIn") as! StaffSignInViewController
+//        
+//        self.navigationController?.pushViewController(destination, animated: true)
+        
+        
+        //performSegue(withIdentifier: "staffSignIn", sender: self)
+    }
+ 
     
 
     /*
