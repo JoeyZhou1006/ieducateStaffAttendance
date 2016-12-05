@@ -8,7 +8,7 @@ target 'ieducateAttendance' do
   # Pods for ieducateAttendance
  pod 'Alamofire', '~> 4.0'
  pod 'AlamofireImage', '~> 3.1'
-
+ pod 'EPSignature'
 end
 
 post_install do |installer|

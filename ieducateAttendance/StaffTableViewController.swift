@@ -159,6 +159,8 @@ class StaffTableViewController: UITableViewController {
         print(staffname)
     
         destination.staffName = staffname
+        destination.staffImage = currentcell.staffImage.image
+            destination.uid = currentcell.uid
         
        //if segue.identifier == "staffSignIn" {
 //            let destinationNavigationController = segue.destination. as! UINavigationController

@@ -21,6 +21,7 @@
 		685916F61DAF053800BF3BBC /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916F51DAF053800BF3BBC /* Staff.swift */; };
 		685916F91DAF0D8100BF3BBC /* StaffDataFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685916F81DAF0D8100BF3BBC /* StaffDataFromServer.swift */; };
 		6875D3C81DF3515700AA7E76 /* StaffSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6875D3C71DF3515700AA7E76 /* StaffSignInViewController.swift */; };
+		68BABF5D1DF59B790020A183 /* SignatureChilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BABF5C1DF59B790020A183 /* SignatureChilViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		685916F51DAF053800BF3BBC /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		685916F81DAF0D8100BF3BBC /* StaffDataFromServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffDataFromServer.swift; sourceTree = "<group>"; };
 		6875D3C71DF3515700AA7E76 /* StaffSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffSignInViewController.swift; sourceTree = "<group>"; };
+		68BABF5C1DF59B790020A183 /* SignatureChilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureChilViewController.swift; sourceTree = "<group>"; };
 		787918B72C9901172135E1BB /* Pods-ieducateAttendance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ieducateAttendance.release.xcconfig"; path = "Pods/Target Support Files/Pods-ieducateAttendance/Pods-ieducateAttendance.release.xcconfig"; sourceTree = "<group>"; };
 		B7E36029646133CAA56E817B /* Pods-ieducateAttendance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ieducateAttendance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ieducateAttendance/Pods-ieducateAttendance.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +98,7 @@
 				685916E21DAEFCD300BF3BBC /* ViewController.swift */,
 				682753AA1DE2BB0C00BEFE15 /* StaffTableViewController.swift */,
 				6875D3C71DF3515700AA7E76 /* StaffSignInViewController.swift */,
+				68BABF5C1DF59B790020A183 /* SignatureChilViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				682753A91DE2A23200BEFE15 /* tempDatasets.swift in Sources */,
 				685916F61DAF053800BF3BBC /* Staff.swift in Sources */,
 				6875D3C81DF3515700AA7E76 /* StaffSignInViewController.swift in Sources */,
+				68BABF5D1DF59B790020A183 /* SignatureChilViewController.swift in Sources */,
 				684F71B61DB87FBD00AF6C7C /* LocalDataFromCoreData.swift in Sources */,
 				685916E11DAEFCD300BF3BBC /* AppDelegate.swift in Sources */,
 			);

@@ -2,15 +2,18 @@ PODS:
   - Alamofire (4.0.1)
   - AlamofireImage (3.1.0):
     - Alamofire (~> 4.0)
+  - EPSignature (1.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage (~> 3.1)
+  - EPSignature
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  EPSignature: 6c5c3ca674650a11b16c3cd5641a830bad4793f8
 
-PODFILE CHECKSUM: 80724f5b23091baf196fe663ba31666aaa35de15
+PODFILE CHECKSUM: 7e14a4821d3bc027dc3007074c35c67f2c85286a
 
 COCOAPODS: 1.0.1
