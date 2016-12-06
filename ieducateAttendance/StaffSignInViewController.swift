@@ -16,6 +16,8 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     var staffName: String!
     var staffImage: UIImage!
     
+    var onsite: String!
+    
 //staff name label to display staff name
     @IBOutlet weak var staffNameLabel: UILabel!
 
@@ -45,6 +47,24 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
         
         self.signatureParentView.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
+        
+        //configure top bar label to indicate user their current onsite status
+        //staff is currently offsite, indicate them that they need to sign in
+        print(onsite!)
+        if(onsite! == "0"){
+            print("staff is currently offsite, indicate them that they need to sign in")
+            self.navigationItem.title = "Good day, \(self.staffName!), please punch in here"
+            
+        
+            
+            
+        }else{
+            print(onsite!)
+           self.navigationItem.title = "Hi, \(self.staffName!), please punch out here"
+            
+        
+        
+        }
         
         
         

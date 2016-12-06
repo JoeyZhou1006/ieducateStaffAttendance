@@ -17,6 +17,8 @@ class staffTableViewCell: UITableViewCell {
     @IBOutlet weak var staffImage: UIImageView!
     var uid: String!
     
+    var lastOnsiteInfo: String?
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

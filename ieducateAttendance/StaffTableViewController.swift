@@ -21,8 +21,7 @@ class StaffTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.staffTableView.rowHeight = 44.0
-        //access method in model to get online and offline staff dictionaries ready, so we can use it for the table view
+            //access method in model to get online and offline staff dictionaries ready, so we can use it for the table view
         self.tempdata.retrieveDataFromServer(){(response) in
         
             self.onlineStaff = response.0
@@ -31,6 +30,8 @@ class StaffTableViewController: UITableViewController {
             print("after retriving from the web")
             print(self.onlineStaff.count)
             print(self.offlineStaff.count)
+            
+            print(self.offlineStaff["MeganONeil"]?.onSite)
             
             
             print("reloading data now")
@@ -53,14 +54,6 @@ class StaffTableViewController: UITableViewController {
     }
     
     
-//    func imageWithImage(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
-//        
-//        UIGraphicsBeginImageContext( newSize )
-//        image.draw(in: CGRect(x: 0,y: 0,width: newSize.width,height: newSize.height))
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        return newImage!.withRenderingMode(.alwaysTemplate)
-//    }
 
     // MARK: - Table view data source
 
@@ -104,6 +97,9 @@ class StaffTableViewController: UITableViewController {
             print("here is the table name which should be uique")
             print(cell.uid)
             print(onlineStaff[key]?.Name)
+            cell.lastOnsiteInfo = onlineStaff[key]?.onSite
+            print(cell.lastOnsiteInfo)
+            
             
         }else{
             let index = offlinestaffkeys[indexPath.row]
@@ -111,11 +107,14 @@ class StaffTableViewController: UITableViewController {
             cell.staffImage.image = offlineStaff[index]!.profilePic!
             // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
             cell.staffName.text = offlineStaff[index]!.Name
+            
+            cell.uid = offlineStaff[index]?.tableName
+            print("here is the table name which should be uique")
+            print(cell.uid)
+            print(offlineStaff[index]?.Name)
+            cell.lastOnsiteInfo = offlineStaff[index]?.onSite
+            print(cell.lastOnsiteInfo)
         }
-
-        
-        // Configure the cell...
-
         return cell
     }
     
@@ -144,35 +143,25 @@ class StaffTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "staffSignIn" {
-           let destination = segue.destination as! StaffSignInViewController
-//            
-//        
+        let destination = segue.destination as! StaffSignInViewController
         let indexpath = self.tableView.indexPathForSelectedRow!
         let currentcell = tableView.cellForRow(at: indexpath) as! staffTableViewCell
-//        
-//        
-//            print("preparing for segue")
-//        print(currentcell.staffName)
-//        print(currentcell.staffName.text)
-//            
+
+         
         let staffname = currentcell.staffName.text!
         print(staffname)
     
         destination.staffName = staffname
         destination.staffImage = currentcell.staffImage.image
-            destination.uid = currentcell.uid
+        destination.uid = currentcell.uid
+        destination.onsite = currentcell.lastOnsiteInfo
         
-       //if segue.identifier == "staffSignIn" {
-//            let destinationNavigationController = segue.destination. as! UINavigationController
-//            
-//            let destinationController = destinationNavigationController.topViewController as! StaffSignInViewController
-//            
-//            destinationController.staffName?.text = currentcell.staffName.text!
-        
- 
-        
+          
       }
     }
+    
+    
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        var destination: StaffSignInViewController = storyboard?.instantiateViewController(withIdentifier: "staffSignIn") as! StaffSignInViewController
