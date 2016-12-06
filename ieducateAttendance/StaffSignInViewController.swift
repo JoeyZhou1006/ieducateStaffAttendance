@@ -57,6 +57,37 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     }
     
     
+    @IBAction func configureSignature(_ sender: Any) {
+        
+        //removeing viewcontollers
+        var signatureView = self.childViewControllers[0] as! SignatureChilViewController
+        
+      //  signatureView.initializeSignaturePad()
+       // signatureView.viewWillAppear(true);
+        
+        signatureView.willMove(toParentViewController: nil)
+        
+        signatureView.view.removeFromSuperview()
+        
+        signatureView.removeFromParentViewController()
+        
+        
+        //readding new view controllers
+        
+        //manually configure the signature child view
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
+        //add this signature child view to its parent view
+        self.addChildViewController(vc)
+        //make sure the signature image is taken up the whole container view
+        vc.view.frame = CGRect(x: 0, y: 0, width: self.signatureParentView.frame.size.width, height: self.signatureParentView.frame.size.height);
+        
+        self.signatureParentView.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
+        
+        
+    }
+    
+    
   
     
     
