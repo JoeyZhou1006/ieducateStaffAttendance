@@ -100,7 +100,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6RR-Rl-oJP">
-                                <rect key="frame" x="120" y="231" width="133" height="39"/>
+                                <rect key="frame" x="86" y="231" width="196" height="39"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="configure signature">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

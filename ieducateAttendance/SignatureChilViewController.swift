@@ -55,20 +55,20 @@ class SignatureChilViewController: UIViewController, EPSignatureDelegate {
         self.signatureImage.image = signatureImage
         
         //setting up the current date in format like dd/mm/yyyy
+        let date = Date()
         let dateFormatter = DateFormatter()
-        let dateAsString = "2015-12-09"
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        let newDate = dateFormatter.date(from: dateAsString)
+        let newDate = dateFormatter.string(from: date)
+        self.date.text = newDate
         
-        let dateString = dateFormatter.string(from: newDate!)
-        date.text = dateString
+        
+    
         
         
         //setting up current time in format like hh:mm:ss
-        let timeAsString = "23:59:11"
+      
         dateFormatter.dateFormat = "HH:mm:ss"
-        let newTime = dateFormatter.date(from: timeAsString)
-        let timeString = dateFormatter.string(from: newTime!)
+        let timeString = dateFormatter.string(from: date)
         time.text = timeString
         
     }
