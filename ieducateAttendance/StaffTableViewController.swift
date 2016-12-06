@@ -155,7 +155,7 @@ class StaffTableViewController: UITableViewController {
 //        print(currentcell.staffName)
 //        print(currentcell.staffName.text)
 //            
-        var staffname = currentcell.staffName.text!
+        let staffname = currentcell.staffName.text!
         print(staffname)
     
         destination.staffName = staffname

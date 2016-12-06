@@ -44,7 +44,7 @@ let Model = StaffDataFromServer()
     
     for staff in self.Model.staffInfoSet{
     print("blablabalbalbalbalablablabalbalbalblablabla++++++++++++++++++++++++++++")
-    print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic, staff.onSite as! String!)
+    print(staff.Image_Url,staff.ImageLocalUrl,staff.Name,staff.onSite,staff.profilePic, staff.onSite as String!)
     
     }
     //now the staff's data is ready to be used, as all the needed information of staff at this stagee is retrieve

@@ -48,7 +48,7 @@ public class StaffDataFromServer {
     func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://localhost/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+        Alamofire.request("http://192.168.1.18:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
             print(response.request)  // original URL request
             print(response.response) // URL response
             print(response.data)     // server data
@@ -81,7 +81,7 @@ public class StaffDataFromServer {
                 //print(self.staffNames)
                 
                 
-                var staff = Staff(Name: name,TableName: tableName, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
+                let staff = Staff(Name: name,TableName: tableName, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
                 
                 self.staffInfoSet.append(staff)
                 
@@ -158,7 +158,7 @@ public class StaffDataFromServer {
             let userName = staff.tableName
             
             //concatenate base url with the user table that we want to query
-            let onsiteUrl = "http://localhost/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
+            let onsiteUrl = "http://192.168.1.18:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
             print(onsiteUrl)
             self.myGroup.enter()
             Alamofire.request(onsiteUrl) .responseString { response in // 1
@@ -167,7 +167,7 @@ public class StaffDataFromServer {
                     
                 case .success:
                     
-                    let var1 = response.result.value as! String!
+                    let var1 = response.result.value as String!
                     print(var1)
                     staff.onSite = var1
                     

@@ -38,7 +38,7 @@ class SignatureChilViewController: UIViewController, EPSignatureDelegate {
     
     //initialize the signature pad for user to sign on
     func initializeSignaturePad(){
-        let signatureVC = EPSignatureViewController(signatureDelegate: self, showsDate: true, showsSaveSignatureOption: true)
+        let signatureVC = EPSignatureViewController(signatureDelegate: self, showsDate: true, showsSaveSignatureOption: false)
         signatureVC.subtitleText = "I agree to the terms and conditions"
        // signatureVC.title = (self.parent as! StaffSignInViewController).staffName
         let nav = UINavigationController(rootViewController: signatureVC)
