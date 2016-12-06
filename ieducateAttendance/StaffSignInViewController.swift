@@ -29,8 +29,12 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     @IBOutlet weak var signatureParentView: UIView!
     
+    
+    @IBOutlet weak var submitBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //submitBtn.isEnabled = false
 
         staffNameLabel.text = staffName
         staffImageView.image = staffImage
@@ -108,6 +112,28 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     }
     
     
+    
+    
+    
+    @IBAction func submitToServer(_ sender: Any) {
+        
+        //add a reference to child view which is the one that capture users signature
+        var signatureView = self.childViewControllers[0] as! SignatureChilViewController
+        
+        //check whether the the signature imageview of child view has any image, if yes, push data to the server
+        //if not, prompt user to configure their signature with a alerview
+        
+        if(signatureView.signatureImage.image == nil){
+            let alert = UIAlertController(title: "Alert", message: "Please Configure your signature first", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+            
+        else{
+        print("signature image is not nil")
+        }
+        
+    }
   
     
     
