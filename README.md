@@ -1,5 +1,5 @@
 # ieducateStaffAttendance
-this is an internship project that is going to provide an alternative option for staff punch in and punch out and provide provides signature handling as well
+this is an internship project that is going to provide an alternative option for staff punch in and punch out with signature handling as well
 
 # description of the project
 
