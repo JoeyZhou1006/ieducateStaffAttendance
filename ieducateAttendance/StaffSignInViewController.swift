@@ -18,6 +18,11 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     var onsite: String!
     
+    var signatureView:SignatureChilViewController!
+    
+    
+    var vc: SignatureChilViewController!
+    
 //staff name label to display staff name
     @IBOutlet weak var staffNameLabel: UILabel!
 
@@ -34,6 +39,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        signatureView = self.childViewControllers[0] as! SignatureChilViewController
         //submitBtn.isEnabled = false
 
         staffNameLabel.text = staffName
@@ -43,7 +49,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
         print(uid)
         
         //manually configure the signature child view
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
+        vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
         //add this signature child view to its parent view
        self.addChildViewController(vc)
         //make sure the signature image is taken up the whole container view
@@ -83,23 +89,26 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     @IBAction func configureSignature(_ sender: Any) {
         
-        //removeing viewcontollers
-        var signatureView = self.childViewControllers[0] as! SignatureChilViewController
+        //removing viewcontollers
+       
+        
+        
+        //signatureView = self.childViewControllers[0] as! SignatureChilViewController
         
       //  signatureView.initializeSignaturePad()
        // signatureView.viewWillAppear(true);
         
-        signatureView.willMove(toParentViewController: nil)
+        vc.willMove(toParentViewController: nil)
         
-        signatureView.view.removeFromSuperview()
+        vc.view.removeFromSuperview()
         
-        signatureView.removeFromParentViewController()
+        vc.removeFromParentViewController()
         
         
         //readding new view controllers
         
         //manually configure the signature child view
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
+        vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
         //add this signature child view to its parent view
         self.addChildViewController(vc)
         //make sure the signature image is taken up the whole container view
@@ -118,15 +127,16 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     @IBAction func submitToServer(_ sender: Any) {
         
         //add a reference to child view which is the one that capture users signature
-        var signatureView = self.childViewControllers[0] as! SignatureChilViewController
-        
+       // self.signatureView = self.childViewControllers[0] as! SignatureChilViewController
+        print(vc.signatureImage.image)
         //check whether the the signature imageview of child view has any image, if yes, push data to the server
         //if not, prompt user to configure their signature with a alerview
         
-        if(signatureView.signatureImage.image == nil){
+        if(vc.signatureImage.image == nil){
             let alert = UIAlertController(title: "Alert", message: "Please Configure your signature first", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            print(" there is no image in the view++++++++++++++++++++++++++++++)_)**90930471949014091-4190")
         }
             
         else{
