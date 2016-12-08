@@ -17,3 +17,13 @@ and submit to server and inserted into correct staff table by using uid
 after staff clicked the tableview cell, they will be directed to their detail view, and a signature pad will pop up automatically for them to sign in, in this case, i used a github open source project EPSignature to accpet users signature, this epsigntureview is nested in a container view in stafftable cell detail view and is fully functioning(you can cancel, you can click done to submit the signature and the signature will be assigned to a uiview for user to view), if the staff clicked cancel, they will be directed back to staff detailview, a configure signature button allows them to re-do their signature, if they don't like the one that they've already done :)
 
 currently, i am constructing the post staff information back to server function
+
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-07%20at%207.02.42%20pm.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.34%20am.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.48%20am.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.03%20am.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.13%20am.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.25%20am.png)
+![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.39%20am.png)
+
+
