@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ieducateAttendance.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1E6868ADB27ABB2471D43047DEDE65C</key>
+		<key>A639A83AA30DBF2343FB142AB90359DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E30CA1A9FD95C1FF06C2A8847196943B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

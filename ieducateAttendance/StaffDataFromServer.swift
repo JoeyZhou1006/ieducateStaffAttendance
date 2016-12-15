@@ -48,11 +48,11 @@ public class StaffDataFromServer {
     func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://192.168.1.18:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
-            print(response.request)  // original URL request
-            print(response.response) // URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
+        Alamofire.request("http://10.10.10.72:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+//            print(response.request)  // original URL request
+//            print(response.response) // URL response
+//            print(response.data)     // server data
+//            print(response.result)   // result of response serialization
             
             
             switch response.result {
@@ -67,7 +67,7 @@ public class StaffDataFromServer {
             //  print("JSON: \(self.JSON)")
             
             
-            //loop through each user array to ger their anme and image url
+            //loop through each user array to ger their name and image url
             for num in 0 ..< arrayValueOfPerson.count {
                 
                 let itemObject = arrayValueOfPerson[num] as! NSDictionary
@@ -123,8 +123,8 @@ public class StaffDataFromServer {
             Alamofire.request(staff.Image_Url ).responseImage { response in
                debugPrint(response)
                 
-               print(response.request)
-               print(response.response)
+//               print(response.request)
+//               print(response.response)
                debugPrint(response.result)
                 
                 print("Finished request \(staff.Name)")
@@ -158,7 +158,7 @@ public class StaffDataFromServer {
             let userName = staff.tableName
             
             //concatenate base url with the user table that we want to query
-            let onsiteUrl = "http://192.168.1.18:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
+            let onsiteUrl = "http://10.10.10.72:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
             print(onsiteUrl)
             self.myGroup.enter()
             Alamofire.request(onsiteUrl) .responseString { response in // 1
@@ -168,7 +168,7 @@ public class StaffDataFromServer {
                 case .success:
                     
                     let var1 = response.result.value as String!
-                    print(var1)
+                  //  print(var1)
                     staff.onSite = var1
                     
                     
@@ -188,6 +188,30 @@ public class StaffDataFromServer {
             // self.storeFetchedImagesToCoreData()
             completionHandler(self.staffInfoSet)
         }
+    }
+    
+    
+    //submit staff attendance record to server
+    func submitAttendanceInfoToServer(staffToServer: StaffDataToServer){
+        print(staffToServer.toJSONString(prettyPrint: true))
+        
+//        Alamofire.request("https://yourServiceURL.com", method: .post, parameters: staff, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+//            
+//            switch(response.result) {
+//            case .success(_):
+//                if let data = response.result.value{
+//                    print(response.result.value)
+//                }
+//                break
+//                
+//            case .failure(_):
+//                print(response.result.error)
+//                break
+//                
+//            }
+//        }
+        
+    
     }
     
     
@@ -221,16 +245,9 @@ public class StaffDataFromServer {
                 staff.ImageLocalUrl = imageLocalUrl?.absoluteString
             }
         }
-        
-
-        
-        
-        
-      
-        
-    
-    
     }
+    
+    
     
     
     //get the documents directory of the device to be used for storing images
@@ -248,9 +265,7 @@ public class StaffDataFromServer {
     
     
     
-    func updateCoreDataByFetchedData(){
-    
-    }
+
     
     
     

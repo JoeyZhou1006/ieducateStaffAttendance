@@ -18,7 +18,8 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     var onsite: String!
     
-    var signatureView:SignatureChilViewController!
+    //shared model object
+  let Model = StaffDataFromServer()
     
     
     var vc: SignatureChilViewController!
@@ -39,7 +40,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signatureView = self.childViewControllers[0] as! SignatureChilViewController
+        //signatureView = self.childViewControllers[0] as! SignatureChilViewController
         //submitBtn.isEnabled = false
 
         staffNameLabel.text = staffName
@@ -138,9 +139,23 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
             self.present(alert, animated: true, completion: nil)
             print(" there is no image in the view++++++++++++++++++++++++++++++)_)**90930471949014091-4190")
         }
-            
+         //call the method in staffdatafrom server to submit the data to the server side
         else{
+            
         print("signature image is not nil")
+            
+            var staff: StaffDataToServer?
+            if(onsite == "0"){
+             staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "1", SignUrl: "blablablabla")
+            }
+            else if (onsite == "1"){
+            staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "0", SignUrl: "blablablabla")
+            }
+            
+           self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
+            
+            
+            
         }
         
     }
