@@ -65,10 +65,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     }
     
     
-    @IBAction func TestBtn(_ sender: Any) {
-        self.goBack()
-    }
-    
+ 
     
     
     override func viewDidLoad() {
@@ -159,6 +156,8 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     
     @IBAction func submitToServer(_ sender: Any) {
+        
+        self.goBack()
         
         //add a reference to child view which is the one that capture users signature
        // self.signatureView = self.childViewControllers[0] as! SignatureChilViewController
