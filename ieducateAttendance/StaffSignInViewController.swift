@@ -37,7 +37,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     var vc: SignatureChilViewController!
     
-//staff name label to display staff name
+    //staff name label to display staff name
     @IBOutlet weak var staffNameLabel: UILabel!
 
     //staff image view to present staff image
@@ -70,15 +70,11 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //signatureView = self.childViewControllers[0] as! SignatureChilViewController
-        //submitBtn.isEnabled = false
 
         staffNameLabel.text = staffName
         staffImageView.image = staffImage
-        // Do any additional setup after loading the view.
-        print("inside sign in page")
-        print(uid)
-        
+
+    
         //manually configure the signature child view
         vc = storyboard?.instantiateViewController(withIdentifier: "SignatureChilViewController") as! SignatureChilViewController
         //add this signature child view to its parent view
@@ -91,9 +87,9 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
         
         //configure top bar label to indicate user their current onsite status
         //staff is currently offsite, indicate them that they need to sign in
-        print(onsite!)
+
         if(onsite! == "0"){
-            print("staff is currently offsite, indicate them that they need to sign in")
+            //staff is currently offsite, indicate them that they need to sign in
             self.navigationItem.title = "Good day, \(self.staffName!), please punch in here"
             
         
@@ -121,13 +117,6 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     @IBAction func configureSignature(_ sender: Any) {
         
         //removing viewcontollers
-       
-        
-        
-        //signatureView = self.childViewControllers[0] as! SignatureChilViewController
-        
-      //  signatureView.initializeSignaturePad()
-       // signatureView.viewWillAppear(true);
         
         vc.willMove(toParentViewController: nil)
         
@@ -160,7 +149,6 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
         self.goBack()
         
         //add a reference to child view which is the one that capture users signature
-       // self.signatureView = self.childViewControllers[0] as! SignatureChilViewController
         print(vc.signatureImage.image)
         //check whether the the signature imageview of child view has any image, if yes, push data to the server
         //if not, prompt user to configure their signature with a alerview
@@ -169,12 +157,9 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
             let alert = UIAlertController(title: "Alert", message: "Please Configure your signature first", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            print(" there is no image in the view++++++++++++++++++++++++++++++)_)**90930471949014091-4190")
         }
          //call the method in staffdatafrom server to submit the data to the server side
         else{
-            
-        print("signature image is not nil")
             
             var staff: StaffDataToServer?
             if(onsite == "0"){

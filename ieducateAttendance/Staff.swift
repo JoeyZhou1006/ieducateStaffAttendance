@@ -53,19 +53,6 @@ class Staff {
         //use the name to search through the server to get the latest onsite status of the staff
         self.onSite = onSite
     }
-    
-
-//    init(TableName: String, Date: String?, Time: String?, OnSite: String?, SignUrl: String?) {
-//        
-//        self.tableName = TableName
-//        self.Date = Date
-//        self.Time = Time
-//        self.onSite = OnSite
-//        self.signUrl = SignUrl
-//    }
-
-    
-    
 
 
 

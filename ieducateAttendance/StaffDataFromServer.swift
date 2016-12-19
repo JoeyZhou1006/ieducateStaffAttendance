@@ -16,9 +16,7 @@ import AlamofireImage
 //network controller
 public class StaffDataFromServer {
     
-    //static let sharedModel = StaffDataFromServer()
-    
-    
+  
     var staffNameandPic: [Array<String>] = []
     
     var staffImages: [UIImage] = []
@@ -49,24 +47,16 @@ public class StaffDataFromServer {
         
         //need to change the ip address according to the wifi you are connecting to
         Alamofire.request("http://localhost:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
-//            print(response.request)  // original URL request
-//            print(response.response) // URL response
-//            print(response.data)     // server data
-//            print(response.result)   // result of response serialization
-            
-            
+          
             switch response.result {
-                // in regards of the reponse from server, if success, do the following
+            // in regards of the reponse from server, if success, do the following
             case .success:
             let retrievedValue = response.result.value as! NSDictionary
-            //print(retrievedValue.description)
+
             
             //print all the users in this object
             let arrayValueOfPerson = retrievedValue["users"] as! NSArray
-            //let JsonDataset = JSON(retrievedValue)
-            //  print("JSON: \(self.JSON)")
-            
-            
+         
             //loop through each user array to ger their name and image url
             for num in 0 ..< arrayValueOfPerson.count {
                 
@@ -76,33 +66,20 @@ public class StaffDataFromServer {
                 let photo_url = itemObject["Photo_Url"] as! String
                 
                 //store the staffs' names into the staff names arrary
-                //self.staffNames.append(name)
-                //insert method to deal with the downloaded image
-                //print(self.staffNames)
-                
-                
+                //start to fill the each staff's object
                 let staff = Staff(Name: name,TableName: tableName, Image_Url: photo_url,ProfilePic: nil,ImageLocalUrl: nil, onSite: nil)
                 
                 self.staffInfoSet.append(staff)
-                
-                print(staff.Name, staff.Image_Url)
-                
-                
                 
             }
                 //if failed, print the error response
             case .failure(let error):
                 print("cannot connect to the server")
-                print("inside the method that is trying to get image")
-                print(error)
                
         }
-            
-              print("should be 21 ")
-              print(self.staffInfoSet.count)
-            //give the updated staff infoset to be hanlder later on in viewcontroller
-           completionHandler(self.staffInfoSet)
-        print("2nd row, it should be 21 as well")
+        //give the updated staff infoset to be handled later on in viewcontroller
+        completionHandler(self.staffInfoSet)
+ 
         }
     }
     
@@ -113,28 +90,11 @@ public class StaffDataFromServer {
     //go through staff array to get a list of photo url of each staff
     func getListOfImageByArrayOfStaff(list: [Staff],completionHandler: @escaping (Array<Staff>) -> ()){
         for staff in list {
-            // downloadUserImageByUrl(url: staff[1])
-            print("printing the staff's image url")
-            print(staff.Image_Url)
-            //this is an asyn function, !!!!!!!!!
-            //downloadUserImageByUrl(url: staff[1])
             
+            //start to use GCD to organize multiple async calls
             self.myGroup.enter()
             Alamofire.request(staff.Image_Url ).responseImage { response in
-               debugPrint(response)
-                
-//               print(response.request)
-//               print(response.response)
-               debugPrint(response.result)
-                
-                print("Finished request \(staff.Name)")
-               // print("request url\(staff[1]) ")
-               // self.groupOfAllImages.append(staff[1])
-                
                 if let image = response.result.value {
-                    print("image downloaded: \(image)")
-                    
-                   // self.staffInfo[staff[0]] = [staff[1] as AnyObject,image]
                     //append the image to the profile pic of the staff in staffinfoset
                     staff.profilePic = image
                 }
@@ -142,9 +102,7 @@ public class StaffDataFromServer {
         }
         }
         myGroup.notify(queue: DispatchQueue.main) {
-            print("finished alll the requests , donneeeeeeeeeeeeeeeee")
-           
-           // self.storeFetchedImagesToCoreData()
+           // finished alll the async requests
              completionHandler(self.staffInfoSet)
         }
     }
@@ -159,7 +117,6 @@ public class StaffDataFromServer {
             
             //concatenate base url with the user table that we want to query
             let onsiteUrl = "http://localhost:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
-            print(onsiteUrl)
             self.myGroup.enter()
             Alamofire.request(onsiteUrl) .responseString { response in // 1
                 
@@ -168,20 +125,12 @@ public class StaffDataFromServer {
                 case .success:
                     
                     let var1 = response.result.value as String!
-                  //  print(var1)
                     staff.onSite = var1
-                    print("getting the staff onsite information here")
-                    print(var1)
-                    if(staff.tableName == "ManyangBaak"){
-                        
-                        print(" i caught manyang, he is the bug raiser")
-                        print(staff.onSite!)
-                    }
+ 
                     
                 case .failure(let error):
-                    
                     print("cannot connect to the server")
-                    print(error)
+
                 }
                 
                 self.myGroup.leave()
@@ -189,11 +138,10 @@ public class StaffDataFromServer {
         }
         
         myGroup.notify(queue: DispatchQueue.main) {
-            print("finished alll last onsite information of staff , donneeeeeeeeeeeeeeeee")
-            print(self.staffInfoSet[1].onSite!)
-            print(self.staffInfoSet[1].Name)
+
             
-            // self.storeFetchedImagesToCoreData()
+            
+            // when reaches here, it means finished all the last onsite information of staff here
             completionHandler(self.staffInfoSet)
         }
     }
@@ -201,32 +149,9 @@ public class StaffDataFromServer {
     
     //submit staff attendance record to server
     func submitAttendanceInfoToServer(staffToServer: StaffDataToServer){
-        print(staffToServer.toJSONString(prettyPrint: true))
-        
-        
-        
+     
         var parameters = staffToServer.toJSONString(prettyPrint: true)
-        
-        
-        
-        
-//        Alamofire.request("https://yourServiceURL.com/post", parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-//            
-//            switch(response.result) {
-//            case .success(_):
-//                if let data = response.result.value{
-//                    print(response.result.value)
-//                }
-//                break
-//                
-//            case .failure(_):
-//                print(response.result.error)
-//                break
-//                
-//            }
-//        }
-        
-    
+  
     }
     
     
@@ -244,20 +169,9 @@ public class StaffDataFromServer {
         
         
                 Alamofire.request("http://localhost/Test/api/UploadPhoto.php/post", parameters: parameters, encoding: JSONEncoding.default, headers: nil).response { response in
-                    
-                    debugPrint("All Response Info: \(response)")
-                    
-//                    if let data = response.request?.value, let utf8Text = String(data: data, encoding: .utf8) {
-//                        print("Data: \(utf8Text)")
-//                    }
-                    
-                    print(response.request?.value)
-        
+   
                     }
-        
-        
-        
-    
+   
     
     }
     
@@ -280,16 +194,12 @@ public class StaffDataFromServer {
                 
                 //get the last part of the url which is the name and store it into staff
                 //information array as the local url directory
-               //let filename = fileInDocumentsDirectory(filename: temp.lastPathComponent)
-                
-                //make the filename of the image, and append it to the local direcotry
+              //make the filename of the image, and append it to the local direcotry
                 let imageLocalUrl = getDocumentsURL().appendingPathComponent(temp.lastPathComponent)
                 
                 //try to store the images into phone's directory
                 try? data.write(to: imageLocalUrl!)
-              //  print("file path is    ",getDocumentsURL())
-                //print("file name is    ", imageLocalUrl)
-                staff.ImageLocalUrl = imageLocalUrl?.absoluteString
+                 staff.ImageLocalUrl = imageLocalUrl?.absoluteString
             }
         }
     }

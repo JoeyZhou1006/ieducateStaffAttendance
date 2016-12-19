@@ -53,12 +53,7 @@ class SignatureChilViewController: UIViewController, EPSignatureDelegate {
     func epSignature(_: EPSignatureViewController, didSign signatureImage: UIImage, boundingRect: CGRect) {
         
         self.signatureImage.image = signatureImage
-        
-        print(self.signatureImage.image)
-        print("signature image is succefully assigned to signature imageview in contrainer ++++++++++++++++++++++++++++++)_)**90930471949014091-4190")
-        
-        
-        
+     
         //setting up the current date in format like dd/mm/yyyy
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -71,7 +66,6 @@ class SignatureChilViewController: UIViewController, EPSignatureDelegate {
         
         
         //setting up current time in format like hh:mm:ss
-      
         dateFormatter.dateFormat = "HH:mm:ss"
         let timeString = dateFormatter.string(from: date)
         time.text = timeString
