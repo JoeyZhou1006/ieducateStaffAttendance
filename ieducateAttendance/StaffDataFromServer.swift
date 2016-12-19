@@ -170,7 +170,13 @@ public class StaffDataFromServer {
                     let var1 = response.result.value as String!
                   //  print(var1)
                     staff.onSite = var1
-                    
+                    print("getting the staff onsite information here")
+                    print(var1)
+                    if(staff.tableName == "ManyangBaak"){
+                        
+                        print(" i caught manyang, he is the bug raiser")
+                        print(staff.onSite!)
+                    }
                     
                 case .failure(let error):
                     
@@ -184,6 +190,8 @@ public class StaffDataFromServer {
         
         myGroup.notify(queue: DispatchQueue.main) {
             print("finished alll last onsite information of staff , donneeeeeeeeeeeeeeeee")
+            print(self.staffInfoSet[1].onSite!)
+            print(self.staffInfoSet[1].Name)
             
             // self.storeFetchedImagesToCoreData()
             completionHandler(self.staffInfoSet)

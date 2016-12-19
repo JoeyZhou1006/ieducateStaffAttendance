@@ -78,8 +78,19 @@ public class tempDatasets {
             if(staff.onSite == "1"){
                 
                 onlineStaff[staff.tableName] = staff
-            }else{
+            }else if (staff.onSite == "0"){
                 offlineStaff[staff.tableName] = staff
+            
+            //this else statement is used for deal with the stuation that a staff has no lastonsite information, so by default, we treat it as an offline staff
+            }else {
+                
+                print("dealing with staff that has 0 record")
+                let index = Model.staffInfoSet.index(where: {$0.tableName == staff.tableName})
+                Model.staffInfoSet[index!].onSite = "0"
+                offlineStaff[staff.tableName] = Model.staffInfoSet[index!]
+                print("their onsite information should be 0")
+                print(offlineStaff[staff.tableName]?.onSite!)
+                print("blabalabl")
             
             }
         

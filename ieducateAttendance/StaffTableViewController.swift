@@ -254,6 +254,13 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
             tempdata.offlineStaff.removeValue(forKey: (currentCellGlobal?.uid)!)
             //insert it to online staff list in global singleton tempdata
             tempdata.onlineStaff[(currentCellGlobal?.uid)!] = tempStaff
+        }else if (currentCellGlobal?.lastOnsiteInfo == nil){
+            print(currentCellGlobal?.lastOnsiteInfo)
+            print("this staff has nil onsite information")
+        }
+        else{
+        
+            print("this staff's last onsite information is not 1 or 0 or nil")
         }
         
         //here, we need to reload the tableview according to the changed online and offline dictionaries in global singleton tempdata
