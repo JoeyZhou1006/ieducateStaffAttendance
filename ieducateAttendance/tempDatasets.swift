@@ -7,9 +7,15 @@
 //
 
 import Foundation
-class tempDatasets {
+public class tempDatasets {
     
-let Model = StaffDataFromServer()
+    public static let tempData = tempDatasets()
+
+
+    
+    let Model = StaffDataFromServer()
+    
+    
     
     var onlineStaff : [String: Staff] = [:]
     var offlineStaff : [String: Staff] = [:]

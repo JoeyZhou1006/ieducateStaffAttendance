@@ -8,18 +8,21 @@
 
 import UIKit
 
-class StaffTableViewController: UITableViewController {
+class StaffTableViewController: UITableViewController, GetMessageDelegate {
     var onlineStaff : [String: Staff] = [:]
 
     var offlineStaff : [String: Staff] = [:]
+    
+    
+    var currentCellGlobal: staffTableViewCell?
 
     @IBOutlet weak var staffTableView: UITableView!
     
     
     
     
-    var tempdata = tempDatasets()
-
+    var tempdata = tempDatasets.tempData
+    //var temp = tempDatasets.tempData
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +47,7 @@ class StaffTableViewController: UITableViewController {
         
         }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,6 +149,8 @@ class StaffTableViewController: UITableViewController {
         let indexpath = self.tableView.indexPathForSelectedRow!
         let currentcell = tableView.cellForRow(at: indexpath) as! staffTableViewCell
 
+            
+        currentCellGlobal = currentcell
          
         let staffname = currentcell.staffName.text!
         print(staffname)
@@ -158,7 +159,11 @@ class StaffTableViewController: UITableViewController {
         destination.staffImage = currentcell.staffImage.image
         destination.uid = currentcell.uid
         destination.onsite = currentcell.lastOnsiteInfo
+            
+        destination.delegate = self
+            
         
+        print("prepare method ************")
           
       }
     }
@@ -222,4 +227,39 @@ class StaffTableViewController: UITableViewController {
     }
     */
 
+    func getMessage(controller: StaffSignInViewController, changedOnsite: Bool) {
+       // currentCellGlobal?.lastOnsiteInfo = 0
+        
+        //if the current selected staff is onsite, change it to offsite
+        if(currentCellGlobal?.lastOnsiteInfo == "1"){
+            print("onsite is 1111111111")
+            print(currentCellGlobal?.staffName.text)
+            print(currentCellGlobal?.lastOnsiteInfo)
+            //get the full information of this staff first
+            let tempStaff = onlineStaff[(currentCellGlobal?.uid)!]
+            //remove the changed staff cell from online in global singleton tempdata
+            tempdata.onlineStaff.removeValue(forKey: (currentCellGlobal?.uid)!)
+            //insert it to offline list in global singleton tempdata
+            tempdata.offlineStaff[(currentCellGlobal?.uid)!] = tempStaff
+        
+        }else if(currentCellGlobal?.lastOnsiteInfo == "0"){
+            print("onsite is 0000000000")
+            print(currentCellGlobal?.staffName.text)
+            print(currentCellGlobal?.lastOnsiteInfo)
+            
+            
+            //get the ful information of this staff 
+            let tempStaff = offlineStaff[(currentCellGlobal?.uid)!]
+            //remove the changed staff from offline in global singleton tempdata
+            tempdata.offlineStaff.removeValue(forKey: (currentCellGlobal?.uid)!)
+            //insert it to online staff list in global singleton tempdata
+            tempdata.onlineStaff[(currentCellGlobal?.uid)!] = tempStaff
+        }
+        
+        //here, we need to reload the tableview according to the changed online and offline dictionaries in global singleton tempdata
+        self.onlineStaff = tempdata.onlineStaff
+        self.offlineStaff = tempdata.offlineStaff
+        self.staffTableView.reloadData()
+        
+    }
 }

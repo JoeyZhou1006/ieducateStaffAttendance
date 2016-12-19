@@ -16,7 +16,7 @@ import AlamofireImage
 //network controller
 public class StaffDataFromServer {
     
-    static let sharedModel = StaffDataFromServer()
+    //static let sharedModel = StaffDataFromServer()
     
     
     var staffNameandPic: [Array<String>] = []
@@ -48,7 +48,7 @@ public class StaffDataFromServer {
     func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://10.10.10.72:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+        Alamofire.request("http://localhost:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
 //            print(response.request)  // original URL request
 //            print(response.response) // URL response
 //            print(response.data)     // server data
@@ -158,7 +158,7 @@ public class StaffDataFromServer {
             let userName = staff.tableName
             
             //concatenate base url with the user table that we want to query
-            let onsiteUrl = "http://10.10.10.72:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
+            let onsiteUrl = "http://localhost:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
             print(onsiteUrl)
             self.myGroup.enter()
             Alamofire.request(onsiteUrl) .responseString { response in // 1
@@ -195,7 +195,14 @@ public class StaffDataFromServer {
     func submitAttendanceInfoToServer(staffToServer: StaffDataToServer){
         print(staffToServer.toJSONString(prettyPrint: true))
         
-//        Alamofire.request("https://yourServiceURL.com", method: .post, parameters: staff, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        
+        
+        var parameters = staffToServer.toJSONString(prettyPrint: true)
+        
+        
+        
+        
+//        Alamofire.request("https://yourServiceURL.com/post", parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
 //            
 //            switch(response.result) {
 //            case .success(_):
@@ -211,6 +218,38 @@ public class StaffDataFromServer {
 //            }
 //        }
         
+    
+    }
+    
+    
+    func uploadImage(image: UIImage){
+        
+
+        //Now use image to create into NSData format
+        let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
+        
+        //convert the nsdata to base64 encoded string
+        let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
+        let parameters = ["image": strBase64]
+        
+        
+        
+        
+                Alamofire.request("http://localhost/Test/api/UploadPhoto.php/post", parameters: parameters, encoding: JSONEncoding.default, headers: nil).response { response in
+                    
+                    debugPrint("All Response Info: \(response)")
+                    
+//                    if let data = response.request?.value, let utf8Text = String(data: data, encoding: .utf8) {
+//                        print("Data: \(utf8Text)")
+//                    }
+                    
+                    print(response.request?.value)
+        
+                    }
+        
+        
+        
+    
     
     }
     

@@ -129,6 +129,16 @@
                                     <action selector="submitToServer:" destination="20L-tN-nBH" eventType="touchUpInside" id="IfX-9J-nIk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRl-8o-O9Q">
+                                <rect key="frame" x="169" y="625" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Test">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="TestBtn:" destination="20L-tN-nBH" eventType="touchUpInside" id="ibu-2p-Ftv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -136,13 +146,17 @@
                             <constraint firstItem="ser-3o-sss" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="33" id="2ou-SF-KIe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ser-3o-sss" secondAttribute="trailing" constant="33" id="5eO-25-ejQ"/>
                             <constraint firstItem="GyO-Ut-qNh" firstAttribute="top" secondItem="LO7-Ox-2oz" secondAttribute="bottom" constant="50" id="6ff-sU-XOW"/>
+                            <constraint firstItem="tRl-8o-O9Q" firstAttribute="top" secondItem="LO7-Ox-2oz" secondAttribute="bottom" constant="8" id="7Ie-de-N3D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LO7-Ox-2oz" secondAttribute="trailing" constant="134" id="CSp-wJ-oQQ"/>
+                            <constraint firstItem="tRl-8o-O9Q" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="153" id="DTY-r3-RZr"/>
                             <constraint firstItem="Rcc-qB-E26" firstAttribute="top" secondItem="fER-pP-HrM" secondAttribute="bottom" constant="10" id="DbW-nT-JZA"/>
                             <constraint firstItem="LO7-Ox-2oz" firstAttribute="top" secondItem="ser-3o-sss" secondAttribute="bottom" constant="45" id="P3K-mt-AKb"/>
                             <constraint firstItem="6RR-Rl-oJP" firstAttribute="centerX" secondItem="fER-pP-HrM" secondAttribute="centerX" id="PjP-y2-ajg"/>
                             <constraint firstItem="fER-pP-HrM" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="110" id="RKW-6U-sSO"/>
                             <constraint firstItem="fER-pP-HrM" firstAttribute="top" secondItem="hfE-0O-0ox" secondAttribute="bottom" constant="26" id="Rzw-Kp-m8h"/>
+                            <constraint firstItem="GyO-Ut-qNh" firstAttribute="top" secondItem="tRl-8o-O9Q" secondAttribute="bottom" constant="12" id="T0Y-MJ-gnR"/>
                             <constraint firstItem="LO7-Ox-2oz" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="127" id="jaM-SC-rRd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tRl-8o-O9Q" secondAttribute="trailing" constant="160" id="tyY-2M-o5o"/>
                             <constraint firstItem="ser-3o-sss" firstAttribute="top" secondItem="6RR-Rl-oJP" secondAttribute="bottom" constant="8" symbolic="YES" id="uKQ-aw-EPA"/>
                             <constraint firstItem="6RR-Rl-oJP" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="70" id="uXM-Xy-ppb"/>
                             <constraint firstItem="6RR-Rl-oJP" firstAttribute="top" secondItem="Rcc-qB-E26" secondAttribute="bottom" constant="10" id="wUt-Qh-2et"/>
@@ -164,7 +178,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VRW-xI-29T" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ChC-Ce-94w">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ChC-Ce-94w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

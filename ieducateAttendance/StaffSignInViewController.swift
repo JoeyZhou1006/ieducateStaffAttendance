@@ -5,11 +5,24 @@
 //  Created by JoeyZhou on 4/12/16.
 //  Copyright © 2016 JoeyZhou. All rights reserved.
 //
+protocol GetMessageDelegate:NSObjectProtocol
+{
+    func getMessage(controller: StaffSignInViewController, changedOnsite: Bool)
+    
+
+
+}
+
+
+
 
 import UIKit
 import EPSignature
 
 class StaffSignInViewController: UIViewController,UINavigationControllerDelegate,EPSignatureDelegate {
+    
+    //use optional because it might be nil
+    var delegate: GetMessageDelegate?
     
     var uid: String!
     
@@ -37,6 +50,26 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     
     @IBOutlet weak var submitBtn: UIButton!
+    
+    
+    func goBack(){
+        if(delegate != nil){
+            delegate?.getMessage(controller: self, changedOnsite: true)
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        else{
+            print("delegate is nil!!!!!!")
+        
+        }
+    
+    }
+    
+    
+    @IBAction func TestBtn(_ sender: Any) {
+        self.goBack()
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,13 +179,17 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
             
             var staff: StaffDataToServer?
             if(onsite == "0"){
+                
+            
              staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "1", SignUrl: "blablablabla")
             }
             else if (onsite == "1"){
             staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "0", SignUrl: "blablablabla")
             }
             
-           self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
+            self.Model.uploadImage(image: vc.signatureImage.image!)
+            
+            self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
             
             
             
