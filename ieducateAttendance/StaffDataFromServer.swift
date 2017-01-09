@@ -148,9 +148,52 @@ public class StaffDataFromServer {
     
     
     //submit staff attendance record to server
-    func submitAttendanceInfoToServer(staffToServer: StaffDataToServer){
+    func submitAttendanceInfoToServer(staffToServer: [String:String],completionHandler: @escaping (String) ->()){
      
-        var parameters = staffToServer.toJSONString(prettyPrint: true)
+        let jsonData = try? JSONSerialization.data(withJSONObject: staffToServer)
+        
+        // create post request
+        let url = URL(string: "http://localhost/Test/api/UploadStaffSiteIno.php")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // insert json data to the request
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+//            let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+//            
+//            print(jsonStr)
+            do {
+                guard let data = data else {
+                    throw JSONError.NoData
+                }
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
+                    throw JSONError.ConversionFailed
+                }
+                
+                
+                
+                completionHandler(json["success"] as! String)
+                print(json)
+               
+                
+            } catch let error as JSONError {
+                print(error.rawValue)
+            } catch let error as NSError {
+                print(error.debugDescription)
+            }
+            
+            
+            
+            
+            
+        }
+        
+        
+        task.resume()
+
   
     }
     

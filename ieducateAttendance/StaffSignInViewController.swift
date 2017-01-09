@@ -24,7 +24,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     //use optional because it might be nil
     var delegate: GetMessageDelegate?
     
-    var uid: String!
+    var uid: String?
     
     var staffName: String!
     var staffImage: UIImage!
@@ -52,6 +52,9 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var submitBtn: UIButton!
     
     
+    
+    @IBOutlet weak var uploadRecordIndicatory: UIActivityIndicatorView!
+    
     func goBack(){
         if(delegate != nil){
             delegate?.getMessage(controller: self, changedOnsite: true)
@@ -70,7 +73,7 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.uploadRecordIndicatory.isHidden = true
         staffNameLabel.text = staffName
         staffImageView.image = staffImage
 
@@ -146,7 +149,8 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     @IBAction func submitToServer(_ sender: Any) {
         
-        
+        self.uploadRecordIndicatory.isHidden = false
+        self.uploadRecordIndicatory.startAnimating()
         
         
         
@@ -166,14 +170,23 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
          //call the method in staffdatafrom server to submit the data to the server side
         else{
             
-            var staff: StaffDataToServer?
-            if(onsite == "0"){
-                
+     
+            print(uid)
+           
+           
+            var staffDictionary: [String: String] = ["Date": vc.date.text!]
             
-             staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "1", SignUrl: "blablablabla")
+             staffDictionary["TableName"] = uid
+            staffDictionary["Time"] = vc.time.text!
+
+            
+            if(onsite == "0"){
+                staffDictionary["Onsite"] = "1"
             }
             else if (onsite == "1"){
-            staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "0", SignUrl: "blablablabla")
+                staffDictionary["Onsite"] = "0"
+                
+                
             }
             
      
@@ -193,8 +206,32 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
                 //and now we got the signature image of the staff
                 print(response)
                 //update the staff object with the server returned image url
-                staff?.SignUrl = response
-                 self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
+                staffDictionary["signatureURL"] = response
+                
+                //post all the other information to the server
+                self.Model.submitAttendanceInfoToServer(staffToServer: staffDictionary) {(response) -> Void in
+                    
+                    if(response == "true"){
+                        print("uploaded successfully")
+                        
+                       
+                        
+                        
+                        // Bounce back to the main thread to update the UI
+                        DispatchQueue.main.async {
+                            self.uploadRecordIndicatory.stopAnimating()
+                            self.uploadRecordIndicatory.isHidden = true
+                             self.goBack()
+                        }
+                        
+                       
+                    
+                    }else{
+                        print("uploaded unsuccessfully")
+                    
+                    }
+                
+                }
             
             }
             

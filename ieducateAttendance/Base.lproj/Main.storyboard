@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VRW-xI-29T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VRW-xI-29T">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -129,6 +129,14 @@
                                     <action selector="submitToServer:" destination="20L-tN-nBH" eventType="touchUpInside" id="IfX-9J-nIk"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="N06-ao-kW2">
+                                <rect key="frame" x="167.5" y="313" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="D1M-cY-YLn"/>
+                                    <constraint firstAttribute="width" constant="40" id="FsV-up-Ait"/>
+                                </constraints>
+                                <color key="color" red="0.075916497929999993" green="0.92454663209999999" blue="0.52474471769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -136,12 +144,14 @@
                             <constraint firstItem="ser-3o-sss" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="33" id="2ou-SF-KIe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ser-3o-sss" secondAttribute="trailing" constant="33" id="5eO-25-ejQ"/>
                             <constraint firstItem="GyO-Ut-qNh" firstAttribute="top" secondItem="LO7-Ox-2oz" secondAttribute="bottom" constant="50" id="6ff-sU-XOW"/>
+                            <constraint firstItem="N06-ao-kW2" firstAttribute="centerY" secondItem="f4z-Rb-YqA" secondAttribute="centerY" id="9vZ-Kv-uRG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LO7-Ox-2oz" secondAttribute="trailing" constant="134" id="CSp-wJ-oQQ"/>
                             <constraint firstItem="Rcc-qB-E26" firstAttribute="top" secondItem="fER-pP-HrM" secondAttribute="bottom" constant="10" id="DbW-nT-JZA"/>
                             <constraint firstItem="LO7-Ox-2oz" firstAttribute="top" secondItem="ser-3o-sss" secondAttribute="bottom" constant="45" id="P3K-mt-AKb"/>
                             <constraint firstItem="6RR-Rl-oJP" firstAttribute="centerX" secondItem="fER-pP-HrM" secondAttribute="centerX" id="PjP-y2-ajg"/>
                             <constraint firstItem="fER-pP-HrM" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="110" id="RKW-6U-sSO"/>
                             <constraint firstItem="fER-pP-HrM" firstAttribute="top" secondItem="hfE-0O-0ox" secondAttribute="bottom" constant="26" id="Rzw-Kp-m8h"/>
+                            <constraint firstItem="N06-ao-kW2" firstAttribute="centerX" secondItem="f4z-Rb-YqA" secondAttribute="centerX" id="crD-zs-t7Q"/>
                             <constraint firstItem="LO7-Ox-2oz" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="127" id="jaM-SC-rRd"/>
                             <constraint firstItem="ser-3o-sss" firstAttribute="top" secondItem="6RR-Rl-oJP" secondAttribute="bottom" constant="8" symbolic="YES" id="uKQ-aw-EPA"/>
                             <constraint firstItem="6RR-Rl-oJP" firstAttribute="leading" secondItem="f4z-Rb-YqA" secondAttribute="leadingMargin" constant="70" id="uXM-Xy-ppb"/>
@@ -153,6 +163,7 @@
                         <outlet property="staffImageView" destination="fER-pP-HrM" id="7OB-h5-kVq"/>
                         <outlet property="staffNameLabel" destination="Rcc-qB-E26" id="171-6J-qaj"/>
                         <outlet property="submitBtn" destination="LO7-Ox-2oz" id="4oq-Em-wSs"/>
+                        <outlet property="uploadRecordIndicatory" destination="N06-ao-kW2" id="8Ik-fk-UYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8We-NO-Odc" userLabel="First Responder" sceneMemberID="firstResponder"/>
