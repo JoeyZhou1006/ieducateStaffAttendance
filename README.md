@@ -19,7 +19,7 @@ after staff clicked the tableview cell, they will be directed to their detail vi
 currently, i am constructing the post staff information back to server function
 
 
-![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/screenshotsblurry.png = 916x500)
+![test](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/screenshotsblurry.png =916x500)
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.34%20am.png)
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.48%20am.png)
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.03%20am.png)
