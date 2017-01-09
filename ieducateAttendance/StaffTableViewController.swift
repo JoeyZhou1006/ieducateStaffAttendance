@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class StaffTableViewController: UITableViewController, GetMessageDelegate {
+class StaffTableViewController: UITableViewController, GetMessageDelegate,NVActivityIndicatorViewable {
     var onlineStaff : [String: Staff] = [:]
 
     var offlineStaff : [String: Staff] = [:]
@@ -16,6 +17,16 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
     
     var currentCellGlobal: staffTableViewCell?
 
+    
+
+
+    
+    
+    
+    var  activityIndicatorView:NVActivityIndicatorView!
+    
+    
+    
     @IBOutlet weak var staffTableView: UITableView!
     
     
@@ -27,12 +38,24 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            //access method in model to get online and offline staff dictionaries ready, so we can use it for the table view
+        //show loading animation
+        self.loadingAnimation()
+  
+                   //access method in model to get online and offline staff dictionaries ready, so we can use it for the table view
         self.tempdata.retrieveDataFromServer(){(response) in
         
+            print(response)
+            if(response != nil){
             self.onlineStaff = response.0
             self.offlineStaff = response.1
+            }else{
+                print("response is nil")
+            
+            }
        
+            
+            
+            self.activityIndicatorView.stopAnimating()
             //reload data after retriving data from the web
             self.staffTableView.reloadData()
 
@@ -46,6 +69,31 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func loadingAnimation(){
+        
+      
+            let frame = CGRect(x: 30, y: 60, width: 130, height: 130)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame)
+    
+
+            activityIndicatorView.padding = 20
+            activityIndicatorView.type = .ballPulse
+            
+            activityIndicatorView.color = .gray
+            
+            activityIndicatorView.center = self.view.center
+            
+            self.view.addSubview(activityIndicatorView)
+            self.view.bringSubview(toFront: activityIndicatorView)
+            
+            activityIndicatorView.startAnimating()
+            print(activityIndicatorView.isHidden)
+
+    
+    }
+    
+    
     
     
 
@@ -232,4 +280,7 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
         self.staffTableView.reloadData()
         
     }
+    
+    
+
 }

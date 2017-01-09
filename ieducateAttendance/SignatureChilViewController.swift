@@ -21,6 +21,17 @@ class SignatureChilViewController: UIViewController, EPSignatureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.signatureImage.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
+        self.signatureImage.layer.cornerRadius = 5.0
+        
+        self.signatureImage.layer.borderWidth = 2
+        
+        
+        self.signatureImage.layer.masksToBounds = true
+        
+       
 
         
      //load signature view when user tapped 

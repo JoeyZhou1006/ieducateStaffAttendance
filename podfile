@@ -11,6 +11,7 @@ target 'ieducateAttendance' do
  pod 'EPSignature'
  pod 'ObjectMapper', '~> 2.2'
  pod 'SCLAlertView'
+ pod 'NVActivityIndicatorView'
 end
 
 post_install do |installer|

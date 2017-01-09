@@ -75,7 +75,9 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-self.uploadRecordIndicatory.isHidden = true
+    
+        
+        self.uploadRecordIndicatory.isHidden = true
         staffNameLabel.text = staffName
         staffImageView.image = staffImage
 
@@ -238,16 +240,37 @@ self.uploadRecordIndicatory.isHidden = true
                             }
                             alertView.showSuccess("Congratulations!", subTitle: "Your information is uploaded successfully")
                             
-                            
-                            
-                            
-                            
+                        
                         }
+                        
                         
                        
                     
                     }else{
                         print("uploaded unsuccessfully")
+                        
+                        // Bounce back to the main thread to update the UI
+                        DispatchQueue.main.async {
+                            self.uploadRecordIndicatory.stopAnimating()
+                            self.uploadRecordIndicatory.isHidden = true
+                            
+                            let appearance = SCLAlertView.SCLAppearance(
+                                showCloseButton: false
+                            )
+                            
+                            let alertView = SCLAlertView(appearance: appearance)
+                            
+                            
+                            
+                            alertView.addButton("OK") {
+                                
+                                self.goBack()
+                            }
+                            alertView.showError("Oops", subTitle: "Can't connect to the server")
+                            
+                            
+                        }
+                        
                     
                     }
                 

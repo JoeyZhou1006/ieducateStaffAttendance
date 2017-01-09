@@ -46,7 +46,7 @@ public class StaffDataFromServer {
     func getNamesAndPicUrls(completionHandler: @escaping (Array<Staff>) -> ()) -> (){
         
         //need to change the ip address according to the wifi you are connecting to
-        Alamofire.request("http://localhost:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
+        Alamofire.request("http://10.0.0.77:80/Test/api/getAllUsers.php/get") .responseJSON { response in // 1
           
             switch response.result {
             // in regards of the reponse from server, if success, do the following
@@ -75,6 +75,7 @@ public class StaffDataFromServer {
                 //if failed, print the error response
             case .failure(let error):
                 print("cannot connect to the server")
+                
                
         }
         //give the updated staff infoset to be handled later on in viewcontroller
@@ -116,7 +117,7 @@ public class StaffDataFromServer {
             let userName = staff.tableName
             
             //concatenate base url with the user table that we want to query
-            let onsiteUrl = "http://localhost:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
+            let onsiteUrl = "http://10.0.0.77:80/Test/api/getLastOnSiteInfoByName.php?Name=\(userName)"
             self.myGroup.enter()
             Alamofire.request(onsiteUrl) .responseString { response in // 1
                 
@@ -153,7 +154,7 @@ public class StaffDataFromServer {
         let jsonData = try? JSONSerialization.data(withJSONObject: staffToServer)
         
         // create post request
-        let url = URL(string: "http://localhost/Test/api/UploadStaffSiteIno.php")!
+        let url = URL(string: "http://10.0.0.77/Test/api/UploadStaffSiteIno.php")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -216,7 +217,7 @@ public class StaffDataFromServer {
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
-        let url = URL(string: "http://localhost/Test/api/UploadPhoto.php")!
+        let url = URL(string: "http://10.0.0.77/Test/api/UploadPhoto.php")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
