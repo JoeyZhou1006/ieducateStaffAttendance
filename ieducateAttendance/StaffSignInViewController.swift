@@ -146,7 +146,12 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
     
     @IBAction func submitToServer(_ sender: Any) {
         
-        self.goBack()
+        
+        
+        
+        
+        
+      //  self.goBack()
         
         //add a reference to child view which is the one that capture users signature
         print(vc.signatureImage.image)
@@ -171,9 +176,29 @@ class StaffSignInViewController: UIViewController,UINavigationControllerDelegate
             staff = StaffDataToServer(TableName: uid, Date: vc.date.text!, Time: vc.time.text!, OnSite: "0", SignUrl: "blablablabla")
             }
             
-            self.Model.uploadImage(image: vc.signatureImage.image!)
+     
             
-            self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
+            
+            
+            
+            
+           //. self.Model.uploadImage(image: vc.signatureImage.image!)
+            
+            
+            self.Model.uploadImage(image: vc.signatureImage.image!) {(response)-> Void in
+                
+                print("in side call backs")
+                
+                
+                //and now we got the signature image of the staff
+                print(response)
+                //update the staff object with the server returned image url
+                staff?.SignUrl = response
+                 self.Model.submitAttendanceInfoToServer(staffToServer: staff!)
+            
+            }
+            
+           
             
             
             

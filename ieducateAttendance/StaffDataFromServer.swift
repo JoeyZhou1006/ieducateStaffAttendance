@@ -155,26 +155,58 @@ public class StaffDataFromServer {
     }
     
     
-    func uploadImage(image: UIImage){
-        
 
-        //Now use image to create into NSData format
-        let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
+    func uploadImage(image: UIImage, completionHandler: @escaping (String) ->()){
         
-        //convert the nsdata to base64 encoded string
-        let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
-        let parameters = ["image": strBase64]
+       // Now use image to create into NSData format
+                let imageData:NSData = UIImagePNGRepresentation(image)! as NSData
         
+                //convert the nsdata to base64 encoded string
         
+                   let strBase64:String = imageData.base64EncodedString(options: .lineLength64Characters)
+                
+
         
+        // prepare json data
+        let json: [String: Any] = ["image": strBase64]
         
-                Alamofire.request("http://localhost/Test/api/UploadPhoto.php/post", parameters: parameters, encoding: JSONEncoding.default, headers: nil).response { response in
-   
-                    }
-   
-    
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        // create post request
+        let url = URL(string: "http://localhost/Test/api/UploadPhoto.php")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // insert json data to the request
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            do {
+                guard let data = data else {
+                    throw JSONError.NoData
+                }
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
+                    throw JSONError.ConversionFailed
+                }
+                
+                 completionHandler(json["sign"] as! String)
+               
+            } catch let error as JSONError {
+                print(error.rawValue)
+            } catch let error as NSError {
+                print(error.debugDescription)
+            }
+            
+            
+
+           
+           
+            }
+
+        
+        task.resume()
     }
-    
     
     
 
@@ -241,6 +273,14 @@ public class StaffDataFromServer {
     
     // Define the specific path, image name
     //let imagePath = fileInDocumentsDirectory(myImageName)
+
+enum JSONError: String, Error {
+    case NoData = "ERROR: no data"
+    case ConversionFailed = "ERROR: conversion from JSON failed"
+}
     
 }
+
+
+
 

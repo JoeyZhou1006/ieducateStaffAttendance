@@ -32,18 +32,10 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
         
             self.onlineStaff = response.0
             self.offlineStaff = response.1
-            
-            print("after retriving from the web")
-            print(self.onlineStaff.count)
-            print(self.offlineStaff.count)
-            
-            print(self.offlineStaff["MeganONeil"]?.onSite)
-            
-            
-            print("reloading data now")
+       
             //reload data after retriving data from the web
             self.staffTableView.reloadData()
-            print("after reloading data")
+
         
         }
 
@@ -92,15 +84,11 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
             let key = onlinestaffkeys[indexPath.row]
             
            
-            cell.staffImage.image = onlineStaff[key]!.profilePic!           // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
-            print(onlineStaff[key]?.profilePic)
+            cell.staffImage.image = onlineStaff[key]!.profilePic!
             cell.staffName.text = onlineStaff[key]?.Name
             cell.uid = onlineStaff[key]?.tableName
-            print("here is the table name which should be uique")
-            print(cell.uid)
-            print(onlineStaff[key]?.Name)
             cell.lastOnsiteInfo = onlineStaff[key]?.onSite
-            print(cell.lastOnsiteInfo)
+           
             
             
         }else{
@@ -109,13 +97,10 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
             cell.staffImage.image = offlineStaff[index]!.profilePic!
             // cell.staffImage.frame = CGRect(x:0.0,y:0.0,width:40.0,height:40.0)
             cell.staffName.text = offlineStaff[index]!.Name
-            
             cell.uid = offlineStaff[index]?.tableName
-            print("here is the table name which should be uique")
-            print(cell.uid)
-            print(offlineStaff[index]?.Name)
+
             cell.lastOnsiteInfo = offlineStaff[index]?.onSite
-            print(cell.lastOnsiteInfo)
+  
         }
         return cell
     }
@@ -161,10 +146,7 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
         destination.onsite = currentcell.lastOnsiteInfo
             
         destination.delegate = self
-            
-        
-        print("prepare method ************")
-          
+       
       }
     }
     
@@ -172,12 +154,7 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var destination: StaffSignInViewController = storyboard?.instantiateViewController(withIdentifier: "staffSignIn") as! StaffSignInViewController
-//        
-//        self.navigationController?.pushViewController(destination, animated: true)
-        
-        
-        //performSegue(withIdentifier: "staffSignIn", sender: self)
+
     }
  
     
@@ -232,9 +209,6 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
         
         //if the current selected staff is onsite, change it to offsite
         if(currentCellGlobal?.lastOnsiteInfo == "1"){
-            print("onsite is 1111111111")
-            print(currentCellGlobal?.staffName.text)
-            print(currentCellGlobal?.lastOnsiteInfo)
             //get the full information of this staff first
             let tempStaff = onlineStaff[(currentCellGlobal?.uid)!]
             //remove the changed staff cell from online in global singleton tempdata
@@ -243,25 +217,14 @@ class StaffTableViewController: UITableViewController, GetMessageDelegate {
             tempdata.offlineStaff[(currentCellGlobal?.uid)!] = tempStaff
         
         }else if(currentCellGlobal?.lastOnsiteInfo == "0"){
-            print("onsite is 0000000000")
-            print(currentCellGlobal?.staffName.text)
-            print(currentCellGlobal?.lastOnsiteInfo)
-            
-            
             //get the ful information of this staff 
             let tempStaff = offlineStaff[(currentCellGlobal?.uid)!]
             //remove the changed staff from offline in global singleton tempdata
             tempdata.offlineStaff.removeValue(forKey: (currentCellGlobal?.uid)!)
             //insert it to online staff list in global singleton tempdata
             tempdata.onlineStaff[(currentCellGlobal?.uid)!] = tempStaff
-        }else if (currentCellGlobal?.lastOnsiteInfo == nil){
-            print(currentCellGlobal?.lastOnsiteInfo)
-            print("this staff has nil onsite information")
         }
-        else{
-        
-            print("this staff's last onsite information is not 1 or 0 or nil")
-        }
+
         
         //here, we need to reload the tableview according to the changed online and offline dictionaries in global singleton tempdata
         self.onlineStaff = tempdata.onlineStaff
