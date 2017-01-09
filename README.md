@@ -25,7 +25,7 @@ currently, i am constructing the post staff information back to server function
 <img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.48%20am.png" alt="alt text" width="300" height="500">
 <img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/IMG_4820.PNG" alt="alt text" width="300" height="500">
 
-<img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.25%20am.PNG" alt="alt text" width="300" height="500">
+<img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.25%20am.png" alt="alt text" width="300" height="500">
 <img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/IMG_4818.PNG" alt="alt text" width="300" height="500">
 <img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/IMG_4819.PNG" alt="alt text" width="300" height="500">
 <img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/IMG_4817.PNG" alt="alt text" width="300" height="500">
