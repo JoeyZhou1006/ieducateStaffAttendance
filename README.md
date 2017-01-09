@@ -20,6 +20,7 @@ currently, i am constructing the post staff information back to server function
 
 
 ![test](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/screenshotsblurry.png =916x500)
+<img src="https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/screenshotsblurry.png" alt="alt text" width="500" height="916">
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.34%20am.png)
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.19.48%20am.png)
 ![screen shots](https://github.com/JoeyZhou1006/ieducateStaffAttendance/blob/master/Screen%20Shot%202016-12-09%20at%2012.20.03%20am.png)
