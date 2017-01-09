@@ -18,6 +18,8 @@ protocol GetMessageDelegate:NSObjectProtocol
 
 import UIKit
 import EPSignature
+import SCLAlertView
+
 
 class StaffSignInViewController: UIViewController,UINavigationControllerDelegate,EPSignatureDelegate {
     
@@ -221,7 +223,25 @@ self.uploadRecordIndicatory.isHidden = true
                         DispatchQueue.main.async {
                             self.uploadRecordIndicatory.stopAnimating()
                             self.uploadRecordIndicatory.isHidden = true
-                             self.goBack()
+                            
+                            let appearance = SCLAlertView.SCLAppearance(
+                                showCloseButton: false
+                            )
+                           
+                            let alertView = SCLAlertView(appearance: appearance)
+                            
+                         
+              
+                            alertView.addButton("OK") {
+                               
+                                 self.goBack()
+                            }
+                            alertView.showSuccess("Congratulations!", subTitle: "Your information is uploaded successfully")
+                            
+                            
+                            
+                            
+                            
                         }
                         
                        
@@ -243,19 +263,5 @@ self.uploadRecordIndicatory.isHidden = true
         
     }
   
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

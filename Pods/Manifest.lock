@@ -4,19 +4,22 @@ PODS:
     - Alamofire (~> 4.0)
   - EPSignature (1.0.3)
   - ObjectMapper (2.2.2)
+  - SCLAlertView (0.7.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage (~> 3.1)
   - EPSignature
   - ObjectMapper (~> 2.2)
+  - SCLAlertView
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   EPSignature: 6c5c3ca674650a11b16c3cd5641a830bad4793f8
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
-PODFILE CHECKSUM: bde17b9196cac3ca64d17f3bcfac1483fd95b025
+PODFILE CHECKSUM: 8e11f1a08c56bd647198591e59252e13ddeef458
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
